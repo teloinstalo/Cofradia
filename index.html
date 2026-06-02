@@ -101,7 +101,7 @@ input, textarea, select { font-family: inherit; }
 .page-section {
   display: none;
   min-height: 100dvh;
-  padding: 80px 16px 40px;
+  padding: 70px 16px 40px;
   content-visibility: auto;
   contain-intrinsic-size: auto 100vh;
 }
@@ -193,11 +193,13 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .header-brand {
   display: flex; align-items: center; gap: 12px;
 }
-.header-brand img { width: 48px; height: 48px; object-fit: contain; }
+.header-brand img { width: 40px; height: 40px; object-fit: contain; }
 .header-brand span {
   font-family: 'Playfair Display', Georgia, serif; font-weight: 700;
   color: var(--red-primary); font-size: clamp(0.9rem, 2vw, 1.15rem); line-height: 1.2;
 }
+.header-brand .brand-short { display: none; }
+.header-brand .brand-full { display: inline; }
 .header-actions { display: flex; align-items: center; gap: 12px; }
 .cart-btn { position: relative; padding: 8px; font-size: 1.2rem; color: var(--dark); }
 .cart-badge {
@@ -236,6 +238,11 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
   .hamburger { display: none; }
   .desktop-nav { display: block; }
 }
+@media (max-width: 480px) {
+  .header-brand .brand-full { display: none; }
+  .header-brand .brand-short { display: inline; font-size: 0.95rem; }
+  .header-brand img { width: 36px; height: 36px; }
+}
 
 /* Mobile menu */
 .mobile-menu {
@@ -273,7 +280,7 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 /* Hero */
 .hero-section {
   position: relative; min-height: 100dvh; justify-content: center; align-items: center;
-  text-align: center; color: var(--white); padding: 0 16px;
+  text-align: center; color: var(--white); padding: 80px 16px 100px;
 }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
@@ -317,7 +324,8 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 }
 .stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .stat-card i { font-size: 1.5rem; color: var(--gold); margin-bottom: 8px; }
-.stat-number { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: var(--red-primary); }
+.stat-number { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: var(--red-primary); line-height: 1.2; word-break: break-word; }
+.stat-card .stat-number { font-size: clamp(1rem, 2.5vw, 1.4rem); }
 .stat-label { font-size: clamp(0.75rem, 1.2vw, 0.85rem); color: var(--gray); }
 
 /* Color circles */
@@ -411,10 +419,10 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 
 /* Semana Santa stats */
 .stat-grid-3 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-@media (min-width: 640px) { .stat-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) { .stat-grid-3 { grid-template-columns: repeat(3, 1fr); } }
 .ss-stat { text-align: center; padding: 20px; background: var(--white); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
 .ss-stat .icon { font-size: 1.8rem; margin-bottom: 8px; }
-.ss-stat .value { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: var(--red-primary); }
+.ss-stat .value { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2.4vw, 1.6rem); font-weight: 700; color: var(--red-primary); line-height: 1.25; word-break: break-word; }
 .ss-stat .label { font-size: 0.85rem; color: var(--gray); }
 
 /* Forms */
@@ -422,8 +430,9 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .form-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; color: var(--dark); }
 .form-group .required { color: var(--red-primary); }
 .form-group input, .form-group textarea, .form-group select {
-  width: 100%; padding: 12px 14px; border: 1px solid #ddd; border-radius: var(--radius-sm);
+  width: 100%; padding: 14px 14px; border: 1px solid #ddd; border-radius: var(--radius-sm);
   font-size: 1rem; background: var(--white); transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  min-height: 44px;
 }
 .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
   border-color: var(--red-primary); box-shadow: 0 0 0 3px rgba(139,0,0,0.08); outline: none;
@@ -453,12 +462,14 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .news-link { font-weight: 700; color: var(--red-primary); font-size: 0.9rem; }
 
 /* Gallery */
-.gallery-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 2px solid var(--gray-bg); }
-.gallery-tab { padding: 10px 20px; font-weight: 600; color: var(--gray); cursor: pointer; border-bottom: 3px solid transparent; transition: all var(--transition-fast); }
+.gallery-tabs { display: flex; gap: 8px; margin-bottom: 24px; border-bottom: 2px solid var(--gray-bg); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.gallery-tabs::-webkit-scrollbar { display: none; }
+.gallery-tab { padding: 10px 20px; font-weight: 600; color: var(--gray); cursor: pointer; border-bottom: 3px solid transparent; transition: all var(--transition-fast); white-space: nowrap; flex-shrink: 0; }
 .gallery-tab.active { color: var(--red-primary); border-bottom-color: var(--red-primary); }
 .gallery-content { display: none; }
 .gallery-content.active { display: block; }
-.year-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.year-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.year-filters::-webkit-scrollbar { display: none; }
 .galeria-item { position: relative; border-radius: var(--radius-md); overflow: hidden; cursor: pointer; }
 .galeria-item img { width: 100%; height: 220px; object-fit: cover; transition: transform var(--transition-slow); }
 .galeria-item:hover img { transform: scale(1.08); }
@@ -487,8 +498,9 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 
 /* Tienda */
 .tienda-controls { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
-.tienda-controls input, .tienda-controls select { padding: 10px 14px; border-radius: var(--radius-sm); border: 1px solid #ddd; font-size: 0.95rem; background: var(--white); }
-.tienda-controls input { flex: 1; min-width: 200px; }
+.tienda-controls input, .tienda-controls select { padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid #ddd; font-size: 0.95rem; background: var(--white); min-height: 44px; }
+.tienda-controls input { flex: 1 1 100%; min-width: 0; }
+@media (min-width: 640px) { .tienda-controls input { flex: 1; min-width: 200px; } .tienda-controls select { flex: 0 0 auto; } }
 .product-card { background: var(--white); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); transition: transform var(--transition-normal), box-shadow var(--transition-normal); }
 .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 .product-card img { width: 100%; height: 240px; object-fit: cover; }
@@ -533,7 +545,7 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 /* Toasts */
 .toast-container {
   position: fixed; z-index: 6000; display: flex; flex-direction: column; gap: 8px;
-  top: 80px; right: 16px; width: 320px;
+  top: 80px; right: 16px; width: 320px; max-width: calc(100vw - 32px);
 }
 @media (min-width: 1024px) { .toast-container { top: auto; bottom: 24px; right: 24px; } }
 .toast {
@@ -545,6 +557,28 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .toast-success { background: #2E7D32; }
 .toast-error { background: var(--red-primary); }
 .toast-info { background: #1565C0; }
+
+/* Bottom nav (mobile) */
+.bottom-nav {
+  display: none;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 950;
+  background: var(--white); border-top: 1px solid var(--gray-bg);
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
+}
+@media (max-width: 767px) {
+  .bottom-nav { display: flex; justify-content: space-around; }
+  body { padding-bottom: 64px; }
+  .page-section { padding-bottom: 80px; }
+}
+.bottom-nav a {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 4px; color: var(--gray); font-size: 0.65rem; font-weight: 600;
+  text-align: center; min-width: 0; transition: color var(--transition-fast);
+}
+.bottom-nav a i { font-size: 1.1rem; }
+.bottom-nav a.active { color: var(--red-primary); }
+.bottom-nav a:active { transform: scale(0.95); }
 
 /* Footer */
 .site-footer {
@@ -583,7 +617,8 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
   <header class="site-header" id="site-header">
     <a class="header-brand" href="#inicio" data-nav="inicio">
       <img src="img/logo-60.png" alt="Logo de la Cofradía del Santísimo Cristo Resucitado de Montoro" loading="lazy" decoding="async">
-      <span>Cofradía del Santísimo Cristo Resucitado</span>
+      <span class="brand-short">Cristo Resucitado</span>
+      <span class="brand-full">Cofradía del Santísimo Cristo Resucitado</span>
     </a>
     <nav class="desktop-nav" aria-label="Navegación principal">
       <ul>
@@ -854,9 +889,9 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
           <div class="fade-in" data-delay="100">
             <p style="margin-bottom:16px">Formar parte de la Cofradía del Santísimo Cristo Resucitado de Montoro es un acto de fe y compromiso con nuestras tradiciones. Los hermanos participan activamente en la vida cofrade, los cultos y la conservación de nuestro patrimonio histórico y religioso.</p>
             <div class="card" style="padding:24px;border:2px solid var(--red-primary);text-align:center">
-              <i class="fas fa-euro-sign" style="font-size:2rem;color:var(--red-primary);margin-bottom:12px"></i>
-              <div style="font-size:2rem;font-weight:700;color:var(--red-primary)">6 €</div>
-              <div style="color:var(--gray)">Cuota anual de hermano</div>
+              <i class="fas fa-euro-sign" style="font-size:1.5rem;color:var(--red-primary);margin-bottom:8px"></i>
+              <div style="font-size:1.6rem;font-weight:700;color:var(--red-primary)">6 €</div>
+              <div style="color:var(--gray);font-size:0.9rem">Cuota anual de hermano</div>
             </div>
           </div>
           <div class="card fade-in" data-delay="150" style="padding:24px">
@@ -1162,6 +1197,13 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
       </div>
     </section>
   </main>
+  <nav class="bottom-nav" id="bottom-nav" aria-label="Navegación inferior móvil">
+    <a href="#inicio" data-nav="inicio"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="#noticias" data-nav="noticias"><i class="fas fa-newspaper"></i><span>Noticias</span></a>
+    <a href="#tienda" data-nav="tienda"><i class="fas fa-store"></i><span>Tienda</span></a>
+    <a href="#galeria" data-nav="galeria"><i class="fas fa-images"></i><span>Galería</span></a>
+    <a href="#contacto" data-nav="contacto"><i class="fas fa-envelope"></i><span>Contacto</span></a>
+  </nav>
   <footer class="site-footer">
     <div class="footer-grid" style="max-width:1200px;margin:0 auto">
       <div class="footer-col">
@@ -1241,7 +1283,7 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
     if (old) { old.classList.remove('active'); }
     if (neu) { neu.classList.add('active'); window.scrollTo(0,0); }
     currentPage = pageId;
-    $$('a[data-nav], .mobile-menu a, .desktop-nav a').forEach(a => {
+    $$('a[data-nav], .mobile-menu a, .desktop-nav a, .bottom-nav a').forEach(a => {
       a.classList.toggle('active', a.getAttribute('data-nav') === pageId || a.getAttribute('href') === '#' + pageId);
     });
     $$('.dot').forEach((d,i) => d.classList.toggle('active', pages[i] === pageId));
