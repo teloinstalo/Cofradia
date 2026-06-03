@@ -722,6 +722,225 @@ button.calendar-day.other {
   transform: rotateY(8deg) rotateX(4deg);
 }
 
+/* Tabs for Galeria-Archivo */
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+.tab-btn {
+  background: var(--ivory);
+  border: 2px solid var(--red-primary);
+  color: var(--red-primary);
+  padding: 10px 20px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.tab-btn:hover {
+  background: rgba(139,0,0,0.05);
+}
+.tab-btn.active {
+  background: var(--red-primary);
+  color: var(--white);
+}
+.tab-content-pane {
+  display: none;
+}
+.tab-content-pane.active {
+  display: block;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Document grid / list */
+.doc-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 768px) {
+  .doc-list { grid-template-columns: repeat(2, 1fr); }
+}
+.doc-card {
+  background: var(--white);
+  border-left: 4px solid var(--gold);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.doc-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+}
+.doc-info h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--red-primary);
+  margin-bottom: 4px;
+}
+.doc-info p {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+.doc-download-btn {
+  background: var(--red-primary);
+  color: var(--white);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+.doc-download-btn:hover {
+  background: var(--red-secondary);
+}
+
+/* Blog Cofrade / Guestbook */
+.blog-feed {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+.blog-post-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .blog-post-card { flex-direction: row; }
+  .blog-post-img { width: 40%; object-fit: cover; }
+  .blog-post-body { width: 60%; }
+}
+.blog-post-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.blog-post-meta {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+.blog-post-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--red-primary);
+  margin-bottom: 12px;
+}
+.blog-post-excerpt {
+  color: var(--dark);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Guestbook comments */
+.guestbook-section {
+  margin-top: 40px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 30px;
+}
+.guestbook-form {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+.guestbook-form input, .guestbook-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+.guestbook-form input:focus, .guestbook-form textarea:focus {
+  outline: 2px solid var(--red-primary);
+}
+.comments-list {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.comment-item {
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid #f5f5f5;
+  padding-bottom: 12px;
+}
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--gray-bg);
+  color: var(--red-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.comment-body h5 {
+  font-size: 0.9rem;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.comment-body small {
+  color: var(--gray);
+  font-size: 0.75rem;
+  display: block;
+  margin-bottom: 4px;
+}
+.comment-body p {
+  font-size: 0.9rem;
+  color: var(--dark);
+  line-height: 1.4;
+}
+
+/* Inside Tienda Shopping Cart Layout */
+.tienda-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+@media (min-width: 992px) {
+  .tienda-layout { grid-template-columns: 1.8fr 1.2fr; }
+}
+.tienda-cart-panel {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  border-top: 4px solid var(--red-primary);
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+}
+.tienda-cart-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--red-primary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
   </style>
 </head>
 <body>
@@ -736,15 +955,12 @@ button.calendar-day.other {
       <ul>
         <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
         <li><a href="#historia" data-nav="historia">Historia</a></li>
-        <li><a href="#imagenes" data-nav="imagenes">Imágenes</a></li>
-        <li><a href="#junta" data-nav="junta">Junta</a></li>
-        <li><a href="#cultos" data-nav="cultos">Cultos</a></li>
-        <li><a href="#semana-santa" data-nav="semana-santa">Semana Santa</a></li>
-        <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
+        <li><a href="#galeria-archivo" data-nav="galeria-archivo">Galería</a></li>
+        <li><a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Cultos y Semana Santa</a></li>
+        <li><a href="#blog-cofrade" data-nav="blog-cofrade">Blog Cofrade</a></li>
         <li><a href="#noticias" data-nav="noticias">Noticias</a></li>
-        <li><a href="#galeria" data-nav="galeria">Galería</a></li>
         <li><a href="#tienda" data-nav="tienda">Tienda</a></li>
-        <li><a href="#archivo" data-nav="archivo">Archivo</a></li>
+        <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
         <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
       </ul>
     </nav>
@@ -763,15 +979,12 @@ button.calendar-day.other {
     <ul>
       <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
       <li><a href="#historia" data-nav="historia">Historia</a></li>
-      <li><a href="#imagenes" data-nav="imagenes">Imágenes</a></li>
-      <li><a href="#junta" data-nav="junta">Junta</a></li>
-      <li><a href="#cultos" data-nav="cultos">Cultos</a></li>
-      <li><a href="#semana-santa" data-nav="semana-santa">Semana Santa</a></li>
-      <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
+      <li><a href="#galeria-archivo" data-nav="galeria-archivo">Galería</a></li>
+      <li><a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Cultos y Semana Santa</a></li>
+      <li><a href="#blog-cofrade" data-nav="blog-cofrade">Blog Cofrade</a></li>
       <li><a href="#noticias" data-nav="noticias">Noticias</a></li>
-      <li><a href="#galeria" data-nav="galeria">Galería</a></li>
       <li><a href="#tienda" data-nav="tienda">Tienda</a></li>
-      <li><a href="#archivo" data-nav="archivo">Archivo</a></li>
+      <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
       <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
     </ul>
   </nav>
@@ -785,7 +998,7 @@ button.calendar-day.other {
         <p class="hero-subtitle">Fe, tradición y devoción desde 1966 — Montoro, Córdoba</p>
         <div class="hero-ctas">
           <a href="#hazte-hermano" class="btn btn-primary" data-nav="hazte-hermano">Hazte Hermano</a>
-          <a href="#semana-santa" class="btn btn-outline btn-outline-white" data-nav="semana-santa">Semana Santa</a>
+          <a href="#cultos-semana-santa" class="btn btn-outline btn-outline-white" data-nav="cultos-semana-santa">Semana Santa</a>
         </div>
       </div>
       <div class="scroll-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></div>
@@ -794,7 +1007,9 @@ button.calendar-day.other {
       <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
         <h2 class="section-title fade-in" data-delay="0">Nuestra Historia</h2>
         <div class="gold-divider fade-in" data-delay="50"></div>
-        <div class="two-col">
+        
+        <!-- Orígenes -->
+        <div class="two-col" style="margin-bottom:60px">
           <div class="fade-in" data-delay="100">
             <p style="margin-bottom:16px">La Cofradía del Santísimo Cristo Resucitado de Montoro fue fundada en 1966 con el propósito de rendir culto a Jesucristo Resucitado, centro de la fe cristiana. Desde su fundación participa activamente en la vida religiosa y cofrade de la localidad, siendo la encargada de culminar la Semana Santa de Montoro con su salida procesional en la mañana del Domingo de Resurrección. A lo largo de los años ha mantenido su compromiso con la devoción, la formación y la conservación de las tradiciones cofrades de la ciudad.</p>
             <div class="grid-2" style="margin-top:24px">
@@ -805,12 +1020,12 @@ button.calendar-day.other {
               </div>
               <div class="stat-card fade-in" data-delay="200">
                 <i class="fas fa-church"></i>
-                <div class="stat-number">Ermita de Nuestra Señora de Gracia</div>
+                <div class="stat-number">Ermita de Gracia</div>
                 <div class="stat-label">Sede Canónica</div>
               </div>
               <div class="stat-card fade-in" data-delay="250">
                 <i class="fas fa-map-marker-alt"></i>
-                <div class="stat-number">Montoro, Córdoba, España</div>
+                <div class="stat-number">Montoro, Córdoba</div>
                 <div class="stat-label">Ubicación</div>
               </div>
               <div class="stat-card fade-in" data-delay="300">
@@ -819,105 +1034,179 @@ button.calendar-day.other {
                 <div class="stat-label">Colores corporativos</div>
               </div>
             </div>
-            <div style="margin-top:24px" class="fade-in" data-delay="350">
-              <h3 style="color:var(--red-primary);margin-bottom:8px;font-size:1.25rem"><i class="fas fa-star" style="color:var(--gold);margin-right:8px"></i>Símbolos e Iconografía</h3>
-              <p style="font-size:0.9rem;color:var(--gray)">El escudo de nuestra corporación sintetiza la teología de la Resurrección. El Monte Calvario representa el triunfo sobre la muerte en el mismo escenario de la Pasión. La Cruz gloriosa resplandece sin el cuerpo del crucificado, simbolizando que ha resucitado. La palma cruzada es el símbolo tradicional de la victoria celestial. La bandera blanca con la palabra "PAX" (Paz) anuncia el primer saludo de Cristo Resucitado a sus discípulos. Las iniciales marianas consagran la protección de la Santísima Virgen, enmarcado todo por una rica rocalla barroca en el rojo carmesí de la Hermandad.</p>
-            </div>
           </div>
           <div class="fade-in" data-delay="200">
             <img src="https://picsum.photos/800/600?random=10" alt="Imagen histórica de la cofradía" style="border-radius:var(--radius-md);box-shadow:var(--shadow-lg);width:100%" loading="lazy" decoding="async">
           </div>
         </div>
-      </div>
-    </section>
-    <section id="imagenes" class="page-section bg-ivory" aria-label="Imágenes Titulares">
-      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
-        <h2 class="section-title fade-in" data-delay="0">Imágenes Titulares</h2>
-        <div class="gold-divider fade-in" data-delay="50"></div>
-        <div class="grid-3">
-          <div class="img-card titular-card fade-in" data-delay="100" style="grid-column:1/-1">
-            <img src="https://picsum.photos/800/500?random=20" alt="Talla en madera de pino del Santísimo Cristo Resucitado, obra de Amadeo Ruiz Olmos (1966)" loading="lazy" decoding="async">
-            <span class="badge">Titular (Amadeo Ruiz Olmos, 1966)</span>
-            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
-            <div class="img-card-name">Santísimo Cristo Resucitado</div>
-          </div>
-          <div class="img-card fade-in" data-delay="150">
-            <img src="https://picsum.photos/600/400?random=21" alt="Talla de Santa María Magdalena, obra de Jesús Gálvez Palos (2016)" loading="lazy" decoding="async">
-            <span class="badge" style="background:var(--gold);">Misterio (2016)</span>
-            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
-            <div class="img-card-name">Santa María Magdalena</div>
-          </div>
-          <div class="img-card fade-in" data-delay="200">
-            <img src="https://picsum.photos/600/400?random=22" alt="Talla del Ángel Anunciador, obra de Jesús Gálvez Palos (2014)" loading="lazy" decoding="async">
-            <span class="badge" style="background:var(--gold);">Misterio (2014)</span>
-            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
-            <div class="img-card-name">Ángel Anunciador</div>
-          </div>
-          <div class="img-card fade-in" data-delay="250">
-            <img src="https://picsum.photos/600/400?random=23" alt="Tallas de Soldados Romanos, obra de Jesús Gálvez Palos (2024)" loading="lazy" decoding="async">
-            <span class="badge" style="background:var(--gold);">Misterio (2024)</span>
-            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
-            <div class="img-card-name">Soldados Romanos</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="junta" class="page-section bg-gray" aria-label="Junta de Gobierno">
-      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
-        <h2 class="section-title fade-in" data-delay="0">Junta de Gobierno</h2>
-        <div class="gold-divider fade-in" data-delay="50"></div>
-        <div class="grid-4">
-          <div class="card junta-card fade-in" data-delay="100">
-            <img src="https://picsum.photos/300/300?random=30" alt="Foto de Jorge Samuel Baena Tendero, Hermano Mayor de la cofradía" class="junta-avatar" loading="lazy" decoding="async">
-            <div class="junta-role">Hermano Mayor</div>
-            <div class="junta-name">Jorge Samuel Baena Tendero</div>
-          </div>
-          <div class="card junta-card fade-in" data-delay="160">
-            <img src="https://picsum.photos/300/300?random=31" alt="Foto de Modesto Madrid, Secretario de la cofradía" class="junta-avatar" loading="lazy" decoding="async">
-            <div class="junta-role">Secretario</div>
-            <div class="junta-name">Modesto Madrid</div>
-          </div>
-          <div class="card junta-card fade-in" data-delay="220">
-            <img src="https://picsum.photos/300/300?random=32" alt="Foto de Gema Expósito Hidalgo, Tesorera de la cofradía" class="junta-avatar" loading="lazy" decoding="async">
-            <div class="junta-role">Tesorera</div>
-            <div class="junta-name">Gema Expósito Hidalgo</div>
-          </div>
-          <div class="card junta-card fade-in" data-delay="280">
-            <img src="https://picsum.photos/300/300?random=33" alt="Foto de Vocal 1" class="junta-avatar" loading="lazy" decoding="async">
-            <div class="junta-role">Vocal de Cultos</div>
-            <div class="junta-name">Vocal 1</div>
-          </div>
-          <div class="card junta-card fade-in" data-delay="340">
-            <img src="https://picsum.photos/300/300?random=34" alt="Foto de Vocal 2" class="junta-avatar" loading="lazy" decoding="async">
-            <div class="junta-role">Vocal de Juventud</div>
-            <div class="junta-name">Vocal 2</div>
-          </div>
-          <div class="card junta-card fade-in" data-delay="400">
-            <img src="https://picsum.photos/300/300?random=35" alt="Foto de Vocal 3" class="junta-avatar" loading="lazy" decoding="async">
-            <div class="junta-role">Vocal de Caridad</div>
-            <div class="junta-name">Vocal 3</div>
-          </div>
-          <div class="card junta-card fade-in" data-delay="460">
-            <img src="https://picsum.photos/300/300?random=36" alt="Foto de Vocal 4" class="junta-avatar" loading="lazy" decoding="async">
-            <div class="junta-role">Vocal de Patrimonio</div>
-            <div class="junta-name">Vocal 4</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="cultos" class="page-section bg-ivory" aria-label="Cultos y Actividades">
-      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
-        <h2 class="section-title fade-in" data-delay="0">Cultos y Actividades</h2>
-        <div class="gold-divider fade-in" data-delay="50"></div>
-        <div class="two-col">
+
+        <hr style="border:0;border-top:1px solid rgba(139,0,0,0.15);margin:40px 0">
+
+        <!-- Escudo y Símbolos -->
+        <div class="two-col" style="margin-bottom:60px;align-items:center">
           <div class="fade-in" data-delay="100">
-            <h3>Solemne Triduo Pascual</h3>
-            <p style="margin:12px 0 16px">El culto principal de la cofradía es el Solemne Triduo en honor al Santísimo Cristo Resucitado, celebrado en los días previos al Domingo de Resurrección. Estas celebraciones constituyen el eje devocional de la corporación y congregan a hermanos y fieles en la Ermita de Nuestra Señora de Gracia.</p>
-            <div class="card" style="padding:16px;border-left:4px solid var(--red-primary)">
-              <p style="font-size:0.9rem;color:var(--gray)"><i class="fas fa-info-circle" style="color:var(--gold);margin-right:6px"></i>Las fechas específicas del Triduo se actualizan anualmente según el calendario litúrgico. Consulte próximamente el calendario de eventos.</p>
+            <h3 style="color:var(--red-primary);font-family:'Playfair Display',serif;font-size:1.8rem;margin-bottom:16px">Escudo y Símbolos</h3>
+            <p style="margin-bottom:20px">El escudo de la Hermandad es una rica síntesis iconográfica de la teología de la Resurrección:</p>
+            <ul style="list-style:none;padding-left:0;margin-bottom:24px;display:flex;flex-direction:column;gap:10px;font-size:0.95rem">
+              <li><i class="fas fa-cross" style="color:var(--gold);margin-right:8px;width:16px"></i><strong>La Cruz Gloriosa:</strong> Se alza resplandeciente y vacía sobre el monte, simbolizando la victoria sobre la muerte.</li>
+              <li><i class="fas fa-flag" style="color:var(--gold);margin-right:8px;width:16px"></i><strong>La Bandera Blanca 'PAX':</strong> Representa la paz transmitida por el Resucitado a sus discípulos.</li>
+              <li><i class="fas fa-leaf" style="color:var(--gold);margin-right:8px;width:16px"></i><strong>La Palma Cruzada:</strong> Símbolo del triunfo celestial y el martirio vencido.</li>
+              <li><i class="fas fa-ellipsis-h" style="color:var(--gold);margin-right:8px;width:16px"></i><strong>Iniciales Marianas:</strong> Monograma "AM" (Ave María) bajo corona, en señal de devoción filial.</li>
+            </ul>
+            <h4 style="margin-bottom:12px;font-size:1rem;text-transform:uppercase;letter-spacing:1px;color:var(--gray)">Paleta Oficial (Haz clic para copiar HEX)</h4>
+            <div style="display:flex;gap:16px;flex-wrap:wrap">
+              <div style="text-align:center">
+                <button class="color-circle-btn" data-color="#8B0000" aria-label="Copiar color rojo carmesí #8B0000">
+                  <div class="color-circle" style="background:#8B0000"></div>
+                </button>
+                <small style="color:var(--gray);display:block;margin-top:4px">Rojo Carmesí<br>#8B0000</small>
+              </div>
+              <div style="text-align:center">
+                <button class="color-circle-btn" data-color="#D4AF37" aria-label="Copiar color oro dorado #D4AF37">
+                  <div class="color-circle" style="background:#D4AF37"></div>
+                </button>
+                <small style="color:var(--gray);display:block;margin-top:4px">Oro Dorado<br>#D4AF37</small>
+              </div>
+              <div style="text-align:center">
+                <button class="color-circle-btn" data-color="#FFFFF0" aria-label="Copiar color marfil #FFFFF0">
+                  <div class="color-circle" style="background:#FFFFF0;border:1px solid #ddd"></div>
+                </button>
+                <small style="color:var(--gray);display:block;margin-top:4px">Marfil Papal<br>#FFFFF0</small>
+              </div>
             </div>
           </div>
-          <div class="fade-in" data-delay="150">
+          <div class="shield-3d fade-in" data-delay="200" style="display:flex;justify-content:center;width:100%;max-width:320px;margin:0 auto">
+            <svg class="shield-svg" viewBox="0 0 400 500" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="shield-bg" cx="50%" cy="40%" r="60%">
+                  <stop offset="0%" stop-color="#a30000" />
+                  <stop offset="100%" stop-color="#4d0000" />
+                </radialGradient>
+                <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFE79A" />
+                  <stop offset="50%" stop-color="#D4AF37" />
+                  <stop offset="100%" stop-color="#8A640F" />
+                </linearGradient>
+                <linearGradient id="silver-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF" />
+                  <stop offset="100%" stop-color="#B0B0B0" />
+                </radialGradient>
+                <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.3"/>
+                </filter>
+              </defs>
+              <g filter="url(#shadow)">
+                <path d="M 200,60 C 260,60 330,80 340,150 C 350,220 330,300 280,360 C 240,410 210,440 200,450 C 190,440 160,410 120,360 C 70,300 50,220 60,150 C 70,80 140,60 200,60 Z" fill="url(#shield-bg)" stroke="url(#gold-grad)" stroke-width="8" stroke-linejoin="round"/>
+                <g transform="translate(140, 10) scale(0.6)" fill="url(#gold-grad)">
+                  <rect x="20" y="60" width="160" height="15" rx="5" />
+                  <path d="M 20,60 L 10,25 L 50,40 L 100,10 L 150,40 L 190,25 L 180,60 Z" />
+                  <circle cx="40" cy="67.5" r="4" fill="#a30000" />
+                  <circle cx="70" cy="67.5" r="4" fill="#0066cc" />
+                  <circle cx="100" cy="67.5" r="4" fill="#a30000" />
+                  <circle cx="130" cy="67.5" r="4" fill="#0066cc" />
+                  <circle cx="160" cy="67.5" r="4" fill="#a30000" />
+                  <circle cx="10" cy="25" r="5" fill="#FFFFFF" />
+                  <circle cx="50" cy="40" r="5" fill="#FFFFFF" />
+                  <circle cx="100" cy="10" r="6" fill="#FFFFFF" />
+                  <circle cx="150" cy="40" r="5" fill="#FFFFFF" />
+                  <circle cx="190" cy="25" r="5" fill="#FFFFFF" />
+                </g>
+                <path d="M 60,180 C 40,160 30,120 50,90 C 70,60 90,70 90,70 C 90,70 80,95 70,110 C 60,125 65,150 80,160 Z" fill="url(#gold-grad)" />
+                <path d="M 340,180 C 360,160 370,120 350,90 C 330,60 310,70 310,70 C 310,70 320,95 330,110 C 340,125 335,150 320,160 Z" fill="url(#gold-grad)" />
+                <path d="M 60,250 C 30,270 20,310 40,340 C 60,370 80,350 80,350 C 80,350 70,330 65,310 C 60,290 70,270 85,260 Z" fill="url(#gold-grad)" />
+                <path d="M 340,250 C 370,270 380,310 360,340 C 340,370 320,350 320,350 C 320,350 330,330 335,310 C 340,290 330,270 315,260 Z" fill="url(#gold-grad)" />
+                <g transform="translate(100, 310)" fill="url(#gold-grad)" opacity="0.9">
+                  <ellipse cx="60" cy="90" rx="50" ry="25" />
+                  <ellipse cx="140" cy="90" rx="50" ry="25" />
+                  <ellipse cx="100" cy="75" rx="60" ry="30" />
+                </g>
+                <g transform="translate(185, 120)">
+                  <rect x="10" y="0" width="14" height="200" fill="url(#gold-grad)" rx="2" stroke="#4d3300" stroke-width="1" />
+                  <rect x="-35" y="45" width="104" height="14" fill="url(#gold-grad)" rx="2" stroke="#4d3300" stroke-width="1" />
+                  <circle cx="17" cy="52" r="30" fill="none" stroke="url(#gold-grad)" stroke-dasharray="4,4" stroke-width="2" opacity="0.6" />
+                  <circle cx="17" cy="52" r="45" fill="none" stroke="url(#gold-grad)" stroke-dasharray="6,4" stroke-width="1.5" opacity="0.4" />
+                </g>
+                <path d="M 140,320 C 145,280 165,220 230,165" fill="none" stroke="url(#gold-grad)" stroke-width="4" stroke-linecap="round" />
+                <path d="M 160,285 C 150,280 142,283 140,285 C 145,280 155,281 163,283 Z" fill="url(#gold-grad)" />
+                <path d="M 170,265 C 158,258 150,260 148,262 C 154,257 165,258 173,261 Z" fill="url(#gold-grad)" />
+                <path d="M 180,245 C 168,235 160,237 157,239 C 163,234 175,235 183,239 Z" fill="url(#gold-grad)" />
+                <path d="M 191,225 C 179,215 171,217 168,219 C 174,214 186,215 194,219 Z" fill="url(#gold-grad)" />
+                <path d="M 203,205 C 192,195 184,197 181,199 C 187,194 198,195 206,199 Z" fill="url(#gold-grad)" />
+                <path d="M 216,187 C 206,177 198,179 195,181 C 201,176 211,177 219,181 Z" fill="url(#gold-grad)" />
+                <path d="M 228,170 C 220,160 212,162 209,164 C 214,160 223,161 230,165 Z" fill="url(#gold-grad)" />
+                <g transform="translate(202, 172)">
+                  <line x1="0" y1="90" x2="45" y2="-10" stroke="url(#gold-grad)" stroke-width="3" />
+                  <polygon points="45,-10 43,-16 49,-12" fill="url(#gold-grad)" />
+                  <path d="M 20,25 C 35,20 45,35 65,30 L 65,65 C 45,70 35,55 20,60 Z" fill="url(#silver-grad)" stroke="#ccc" stroke-width="1" />
+                  <text x="32" y="47" font-family="'Playfair Display', serif" font-weight="bold" font-size="11" fill="#8B0000" transform="rotate(-10, 42, 47)">PAX</text>
+                </g>
+                <g transform="translate(115, 230) scale(0.95)">
+                  <path d="M 25,50 L 40,10 L 55,50 M 30,37 L 50,37" fill="none" stroke="url(#gold-grad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 50,45 C 50,45 57,20 65,25 C 72,30 70,50 70,50 M 70,50 C 70,50 77,20 85,25 C 92,30 90,45 90,45" fill="none" stroke="url(#gold-grad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 40,8 L 48,0 L 56,8 L 48,12 Z" fill="url(#gold-grad)" />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <hr style="border:0;border-top:1px solid rgba(139,0,0,0.15);margin:40px 0">
+
+        <!-- Junta de Gobierno -->
+        <div>
+          <h3 style="color:var(--red-primary);font-family:'Playfair Display',serif;font-size:1.8rem;text-align:center;margin-bottom:30px">Junta de Gobierno</h3>
+          <div class="grid-4">
+            <div class="card junta-card fade-in" data-delay="100">
+              <img src="https://picsum.photos/300/300?random=30" alt="Foto de Jorge Samuel Baena Tendero, Hermano Mayor de la cofradía" class="junta-avatar" loading="lazy" decoding="async">
+              <div class="junta-role">Hermano Mayor</div>
+              <div class="junta-name">Jorge Samuel Baena Tendero</div>
+            </div>
+            <div class="card junta-card fade-in" data-delay="160">
+              <img src="https://picsum.photos/300/300?random=31" alt="Foto de Modesto Madrid, Secretario de la cofradía" class="junta-avatar" loading="lazy" decoding="async">
+              <div class="junta-role">Secretario</div>
+              <div class="junta-name">Modesto Madrid</div>
+            </div>
+            <div class="card junta-card fade-in" data-delay="220">
+              <img src="https://picsum.photos/300/300?random=32" alt="Foto de Gema Expósito Hidalgo, Tesorera de la cofradía" class="junta-avatar" loading="lazy" decoding="async">
+              <div class="junta-role">Tesorera</div>
+              <div class="junta-name">Gema Expósito Hidalgo</div>
+            </div>
+            <div class="card junta-card fade-in" data-delay="280">
+              <img src="https://picsum.photos/300/300?random=33" alt="Foto de Vocal 1" class="junta-avatar" loading="lazy" decoding="async">
+              <div class="junta-role">Vocal de Cultos</div>
+              <div class="junta-name">Vocal 1</div>
+            </div>
+            <div class="card junta-card fade-in" data-delay="340">
+              <img src="https://picsum.photos/300/300?random=34" alt="Foto de Vocal 2" class="junta-avatar" loading="lazy" decoding="async">
+              <div class="junta-role">Vocal de Juventud</div>
+              <div class="junta-name">Vocal 2</div>
+            </div>
+            <div class="card junta-card fade-in" data-delay="400">
+              <img src="https://picsum.photos/300/300?random=35" alt="Foto de Vocal 3" class="junta-avatar" loading="lazy" decoding="async">
+              <div class="junta-role">Vocal de Caridad</div>
+              <div class="junta-name">Vocal 3</div>
+            </div>
+            <div class="card junta-card fade-in" data-delay="460">
+              <img src="https://picsum.photos/300/300?random=36" alt="Foto de Vocal 4" class="junta-avatar" loading="lazy" decoding="async">
+              <div class="junta-role">Vocal de Patrimonio</div>
+              <div class="junta-name">Vocal 4</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section id="cultos-semana-santa" class="page-section bg-ivory" aria-label="Cultos y Semana Santa">
+      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
+        <h2 class="section-title fade-in" data-delay="0">Cultos y Semana Santa</h2>
+        <div class="gold-divider fade-in" data-delay="50"></div>
+        
+        <div class="two-col" style="align-items:start;gap:40px">
+          <!-- Columna Izquierda: Calendario de Cultos y Actividades -->
+          <div class="fade-in" data-delay="100">
+            <h3 style="color:var(--red-primary);font-family:'Playfair Display',serif;margin-bottom:12px"><i class="fas fa-calendar-alt" style="color:var(--gold);margin-right:8px"></i>Calendario de Cultos</h3>
+            <p style="margin-bottom:20px;font-size:0.95rem;color:var(--dark)">El centro de nuestra vida fraterna son las celebraciones litúrgicas, destacando el Solemne Triduo Pascual en honor al Santísimo Cristo Resucitado en la Ermita de Nuestra Señora de Gracia.</p>
+            
             <div class="calendar-widget">
               <div class="calendar-header">
                 <button id="cal-prev" aria-label="Mes anterior"><i class="fas fa-chevron-left"></i></button>
@@ -978,49 +1267,14 @@ button.calendar-day.other {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <section id="semana-santa" class="page-section bg-gray" aria-label="Semana Santa">
-      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
-        <h2 class="section-title fade-in" data-delay="0">Semana Santa</h2>
-        <div class="gold-divider fade-in" data-delay="50"></div>
-        <div class="two-col">
-          <div class="fade-in" data-delay="100">
-            <div class="stat-grid-3" style="margin-bottom:24px">
-              <div class="ss-stat fade-in" data-delay="120">
-                <div class="icon">☀️</div>
-                <div class="value stat-number">Domingo de Resurrección</div>
-                <div class="label">Día de salida</div>
-              </div>
-              <div class="ss-stat fade-in" data-delay="160">
-                <div class="icon">🕐</div>
-                <div class="value stat-number">~10:00 horas</div>
-                <div class="label">Hora de salida</div>
-              </div>
-              <div class="ss-stat fade-in" data-delay="200">
-                <div class="icon">🏛️</div>
-                <div class="value stat-number" data-animate="1">1</div>
-                <div class="label">Paso procesional</div>
-              </div>
-              <div class="ss-stat fade-in" data-delay="240">
-                <div class="icon">👥</div>
-                <div class="value stat-number" data-animate="1">~60</div>
-                <div class="label">Nazarenos</div>
-              </div>
-              <div class="ss-stat fade-in" data-delay="280">
-                <div class="icon">👥</div>
-                <div class="value stat-number" data-animate="1">~90</div>
-                <div class="label">Costaleros</div>
-              </div>
-              <div class="ss-stat fade-in" data-delay="320">
-                <div class="icon">🎵</div>
-                <div class="value stat-number">Agrupación Musical Jesús Caído de Montoro</div>
-                <div class="label">Acompañamiento</div>
-              </div>
-            </div>
-            <div class="card" style="padding:20px;border-left:4px solid var(--gold)">
-              <h3 style="margin-bottom:12px"><i class="fas fa-route" style="color:var(--gold);margin-right:8px"></i>Itinerario Oficial</h3>
+          
+          <!-- Columna Derecha: Estación de Penitencia y Recorrido -->
+          <div class="fade-in" data-delay="200" style="width:100%">
+            <h3 style="color:var(--red-primary);font-family:'Playfair Display',serif;margin-bottom:12px"><i class="fas fa-route" style="color:var(--gold);margin-right:8px"></i>Estación de Penitencia</h3>
+            <p style="margin-bottom:20px;font-size:0.95rem;color:var(--dark)">Cada mañana de Domingo de Resurrección, la cofradía realiza su salida procesional de gloria por las calles de Montoro.</p>
+            
+            <div class="card" style="padding:20px;border-left:4px solid var(--gold);margin-bottom:20px">
+              <h4 style="margin-bottom:12px;color:var(--red-primary);font-family:'Playfair Display',serif">Itinerario Oficial</h4>
               <ul style="list-style:none; padding-left:0; font-size:0.9rem; color:var(--gray); display:flex; flex-direction:column; gap:6px;">
                 <li><i class="fas fa-church" style="color:var(--red-primary); margin-right:8px;"></i><strong>Salida (10:00 h):</strong> Ermita de Nuestra Señora de Gracia</li>
                 <li><i class="fas fa-long-arrow-alt-down" style="margin-right:8px;"></i>Calle Virgen de Gracia</li>
@@ -1032,13 +1286,48 @@ button.calendar-day.other {
                 <li><i class="fas fa-door-open" style="color:var(--red-primary); margin-right:8px;"></i><strong>Entrada (13:30 h):</strong> Ermita de Nuestra Señora de Gracia</li>
               </ul>
             </div>
-          </div>
-          <div class="fade-in" data-delay="200">
-            <div style="border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-lg);height:100%;min-height:350px">
+            
+            <div style="border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-md);height:250px;margin-bottom:20px">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.729188046343!2d-4.383180423528254!3d38.00674069818817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6d52579b29cbdf%3A0x95e2df8d795df93a!2sErmita%20de%20Nuestra%20Se%C3%B1ora%20de%20Gracia!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
           </div>
         </div>
+
+        <!-- Estadísticas en fila completa inferior -->
+        <hr style="border:0;border-top:1px solid rgba(139,0,0,0.15);margin:40px 0">
+        <div class="stat-grid-3" style="margin-top:20px">
+          <div class="ss-stat fade-in" data-delay="120">
+            <div class="icon">☀️</div>
+            <div class="value stat-number">Domingo de Resurrección</div>
+            <div class="label">Día de salida</div>
+          </div>
+          <div class="ss-stat fade-in" data-delay="160">
+            <div class="icon">🕐</div>
+            <div class="value stat-number">~10:00 horas</div>
+            <div class="label">Hora de salida</div>
+          </div>
+          <div class="ss-stat fade-in" data-delay="200">
+            <div class="icon">🏛️</div>
+            <div class="value stat-number" data-animate="1">1</div>
+            <div class="label">Paso procesional</div>
+          </div>
+          <div class="ss-stat fade-in" data-delay="240">
+            <div class="icon">👥</div>
+            <div class="value stat-number" data-animate="1">~60</div>
+            <div class="label">Nazarenos</div>
+          </div>
+          <div class="ss-stat fade-in" data-delay="280">
+            <div class="icon">👥</div>
+            <div class="value stat-number" data-animate="1">~90</div>
+            <div class="label">Costaleros</div>
+          </div>
+          <div class="ss-stat fade-in" data-delay="320">
+            <div class="icon">🎵</div>
+            <div class="value stat-number" style="font-size: 1.1rem; line-height: 1.3;">AM Jesús Caído de Montoro</div>
+            <div class="label">Acompañamiento</div>
+          </div>
+        </div>
+
       </div>
     </section>
     <section id="hazte-hermano" class="page-section bg-ivory" aria-label="Hazte Hermano">
@@ -1149,16 +1438,49 @@ button.calendar-day.other {
         <div style="text-align:center;margin-top:32px" class="fade-in" data-delay="400"><a href="#noticias" class="btn btn-outline" style="border-color:var(--red-primary);color:var(--red-primary)">Ver todas las noticias</a></div>
       </div>
     </section>
-    <section id="galeria" class="page-section bg-ivory" aria-label="Galería Multimedia">
+    <section id="galeria-archivo" class="page-section bg-ivory" aria-label="Galería y Archivo">
       <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
-        <h2 class="section-title fade-in" data-delay="0">Galería Multimedia</h2>
+        <h2 class="section-title fade-in" data-delay="0">Galería y Archivo</h2>
         <div class="gold-divider fade-in" data-delay="50"></div>
+        
         <div class="gallery-tabs fade-in" data-delay="100">
-          <button class="gallery-tab active" data-gallery-tab="fotos">Fotografías</button>
-          <button class="gallery-tab" data-gallery-tab="videos">Vídeos</button>
-          <button class="gallery-tab" data-gallery-tab="archivo">Archivo Histórico</button>
+          <button class="gallery-tab active" data-gallery-tab="titulares">Imágenes Titulares</button>
+          <button class="gallery-tab" data-gallery-tab="fotos">Galería Fotográfica</button>
+          <button class="gallery-tab" data-gallery-tab="documental">Archivo Documental</button>
         </div>
-        <div class="gallery-content active" id="tab-fotos">
+        
+        <!-- Pestaña 1: Imágenes Titulares -->
+        <div class="gallery-content active" id="tab-titulares">
+          <div class="grid-3">
+            <div class="img-card titular-card fade-in" data-delay="100" style="grid-column:1/-1">
+              <img src="https://picsum.photos/800/500?random=20" alt="Talla en madera de pino del Santísimo Cristo Resucitado, obra de Amadeo Ruiz Olmos (1966)" loading="lazy" decoding="async">
+              <span class="badge">Titular (Amadeo Ruiz Olmos, 1966)</span>
+              <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+              <div class="img-card-name">Santísimo Cristo Resucitado</div>
+            </div>
+            <div class="img-card fade-in" data-delay="150">
+              <img src="https://picsum.photos/600/400?random=21" alt="Talla de Santa María Magdalena, obra de Jesús Gálvez Palos (2016)" loading="lazy" decoding="async">
+              <span class="badge" style="background:var(--gold);">Misterio (2016)</span>
+              <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+              <div class="img-card-name">Santa María Magdalena</div>
+            </div>
+            <div class="img-card fade-in" data-delay="200">
+              <img src="https://picsum.photos/600/400?random=22" alt="Talla del Ángel Anunciador, obra de Jesús Gálvez Palos (2014)" loading="lazy" decoding="async">
+              <span class="badge" style="background:var(--gold);">Misterio (2014)</span>
+              <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+              <div class="img-card-name">Ángel Anunciador</div>
+            </div>
+            <div class="img-card fade-in" data-delay="250">
+              <img src="https://picsum.photos/600/400?random=23" alt="Tallas de Soldados Romanos, obra de Jesús Gálvez Palos (2024)" loading="lazy" decoding="async">
+              <span class="badge" style="background:var(--gold);">Misterio (2024)</span>
+              <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+              <div class="img-card-name">Soldados Romanos</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Pestaña 2: Galería Fotográfica -->
+        <div class="gallery-content" id="tab-fotos">
           <div class="year-filters" style="margin-bottom:16px">
             <button class="filter-pill active" data-year="Todos">Todos</button>
             <button class="filter-pill" data-year="2025">2025</button>
@@ -1201,126 +1523,189 @@ button.calendar-day.other {
             </div>
           </div>
         </div>
-        <div class="gallery-content" id="tab-videos">
-          <div class="video-placeholder fade-in" data-delay="100">
-            <img src="https://picsum.photos/1280/720?random=70" alt="Miniatura del vídeo de la cofradía" loading="lazy" decoding="async">
-            <div class="video-play"><button aria-label="Reproducir vídeo"><i class="fas fa-play"></i></button></div>
-          </div>
-        </div>
-        <div class="gallery-content" id="tab-archivo">
+        
+        <!-- Pestaña 3: Archivo Documental -->
+        <div class="gallery-content" id="tab-documental">
           <div class="grid-3">
-            <div class="galeria-item fade-in" data-delay="100">
-              <img src="https://picsum.photos/600/450?random=80" alt="Archivo histórico 1980" loading="lazy" decoding="async">
-              <span class="badge" style="top:12px;right:12px">1980</span>
+            <div class="card fade-in" data-delay="100" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <i class="fas fa-file-pdf" style="font-size:2.5rem; color:var(--red-primary); margin-bottom:12px"></i>
+                <h3 style="margin-bottom:8px">Estatutos y Reglas</h3>
+                <p style="font-size:0.85rem; color:var(--gray); margin-bottom:16px">Documento oficial aprobado por el Obispado con las reglas que rigen nuestra Hermandad.</p>
+              </div>
+              <a href="#" class="btn btn-primary btn-full text-center" style="display:block; text-decoration:none;"><i class="fas fa-download"></i> Descargar PDF</a>
             </div>
-            <div class="galeria-item fade-in" data-delay="160">
-              <img src="https://picsum.photos/600/450?random=81" alt="Archivo histórico 1995" loading="lazy" decoding="async">
-              <span class="badge" style="top:12px;right:12px">1995</span>
+            <div class="card fade-in" data-delay="160" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <i class="fas fa-file-pdf" style="font-size:2.5rem; color:var(--red-primary); margin-bottom:12px"></i>
+                <h3 style="margin-bottom:8px">Boletín Cuaresma 2026</h3>
+                <p style="font-size:0.85rem; color:var(--gray); margin-bottom:16px">Publicación anual con artículos históricos, reflexiones litúrgicas e itinerario.</p>
+              </div>
+              <a href="#" class="btn btn-primary btn-full text-center" style="display:block; text-decoration:none;"><i class="fas fa-download"></i> Descargar PDF</a>
             </div>
-            <div class="galeria-item fade-in" data-delay="220">
-              <img src="https://picsum.photos/600/450?random=82" alt="Archivo histórico 2005" loading="lazy" decoding="async">
-              <span class="badge" style="top:12px;right:12px">2005</span>
-            </div>
-            <div class="galeria-item fade-in" data-delay="280">
-              <img src="https://picsum.photos/600/450?random=83" alt="Archivo histórico 2015" loading="lazy" decoding="async">
-              <span class="badge" style="top:12px;right:12px">2015</span>
+            <div class="card fade-in" data-delay="220" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <i class="fas fa-file-pdf" style="font-size:2.5rem; color:var(--red-primary); margin-bottom:12px"></i>
+                <h3 style="margin-bottom:8px">Ficha de Inscripción</h3>
+                <p style="font-size:0.85rem; color:var(--gray); margin-bottom:16px">Formulario impreso para la solicitud de alta presencial de nuevos hermanos.</p>
+              </div>
+              <a href="#" class="btn btn-primary btn-full text-center" style="display:block; text-decoration:none;"><i class="fas fa-download"></i> Descargar PDF</a>
             </div>
           </div>
         </div>
+        
       </div>
     </section>
     <section id="tienda" class="page-section bg-gray" aria-label="Tienda Online">
       <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
         <h2 class="section-title fade-in" data-delay="0">Tienda Online</h2>
         <div class="gold-divider fade-in" data-delay="50"></div>
-        <div class="tienda-controls fade-in" data-delay="100">
-          <input type="text" id="tienda-search" placeholder="Buscar productos...">
-          <select id="tienda-category"><option value="">Todas las categorías</option><option value="textil">Textil</option><option value="hogar">Hogar</option><option value="accesorios">Accesorios</option><option value="papeleria">Papelería</option></select>
-          <select id="tienda-sort"><option value="">Ordenar por</option><option value="name-asc">Nombre A-Z</option><option value="name-desc">Nombre Z-A</option><option value="price-asc">Precio ascendente</option><option value="price-desc">Precio descendente</option></select>
-        </div>
-        <div class="grid-3" id="product-grid">
-          <div class="product-card fade-in" data-delay="120" data-product-name="Camiseta Cofradía" data-product-price="15,00 €" data-product-cat="textil">
-            <img src="img/prod-camiseta.jpg" alt="Camiseta Cofradía" loading="lazy" decoding="async">
-            <div class="product-card-body">
-              <div class="product-name">Camiseta Cofradía</div>
-              <div class="product-price">15,00 €</div>
-              <button class="btn btn-primary btn-full add-to-cart" data-name="Camiseta Cofradía" data-price="15,00 €" data-img="img/prod-camiseta.jpg">Añadir al carrito</button>
+        
+        <div class="tienda-layout" style="display:flex; flex-direction:row; gap:30px; align-items:start; flex-wrap:wrap;">
+          
+          <!-- Productos -->
+          <div class="tienda-productos" style="flex:1; min-width:300px;">
+            <div class="tienda-controls fade-in" data-delay="100" style="margin-bottom:20px">
+              <input type="text" id="tienda-search" placeholder="Buscar productos...">
+              <select id="tienda-category"><option value="">Todas las categorías</option><option value="textil">Textil</option><option value="hogar">Hogar</option><option value="accesorios">Accesorios</option><option value="papeleria">Papelería</option></select>
+              <select id="tienda-sort"><option value="">Ordenar por</option><option value="name-asc">Nombre A-Z</option><option value="name-desc">Nombre Z-A</option><option value="price-asc">Precio ascendente</option><option value="price-desc">Precio descendente</option></select>
+            </div>
+            
+            <div class="grid-3" id="product-grid">
+              <div class="product-card fade-in" data-delay="120" data-product-name="Camiseta Cofradía" data-product-price="15,00 €" data-product-cat="textil">
+                <img src="img/prod-camiseta.jpg" alt="Camiseta Cofradía" loading="lazy" decoding="async">
+                <div class="product-card-body">
+                  <div class="product-name">Camiseta Cofradía</div>
+                  <div class="product-price">15,00 €</div>
+                  <button class="btn btn-primary btn-full add-to-cart" data-name="Camiseta Cofradía" data-price="15,00 €" data-img="img/prod-camiseta.jpg">Añadir al carrito</button>
+                </div>
+              </div>
+              <div class="product-card fade-in" data-delay="180" data-product-name="Taza conmemorativa" data-product-price="8,00 €" data-product-cat="hogar">
+                <img src="img/prod-taza.jpg" alt="Taza conmemorativa" loading="lazy" decoding="async">
+                <div class="product-card-body">
+                  <div class="product-name">Taza conmemorativa</div>
+                  <div class="product-price">8,00 €</div>
+                  <button class="btn btn-primary btn-full add-to-cart" data-name="Taza conmemorativa" data-price="8,00 €" data-img="img/prod-taza.jpg">Añadir al carrito</button>
+                </div>
+              </div>
+              <div class="product-card fade-in" data-delay="240" data-product-name="Llavero" data-product-price="5,00 €" data-product-cat="accesorios">
+                <img src="img/prod-llavero.jpg" alt="Llavero" loading="lazy" decoding="async">
+                <div class="product-card-body">
+                  <div class="product-name">Llavero</div>
+                  <div class="product-price">5,00 €</div>
+                  <button class="btn btn-primary btn-full add-to-cart" data-name="Llavero" data-price="5,00 €" data-img="img/prod-llavero.jpg">Añadir al carrito</button>
+                </div>
+              </div>
+              <div class="product-card fade-in" data-delay="300" data-product-name="Postal" data-product-price="2,50 €" data-product-cat="papeleria">
+                <img src="img/prod-postal.jpg" alt="Postal" loading="lazy" decoding="async">
+                <div class="product-card-body">
+                  <div class="product-name">Postal</div>
+                  <div class="product-price">2,50 €</div>
+                  <button class="btn btn-primary btn-full add-to-cart" data-name="Postal" data-price="2,50 €" data-img="img/prod-postal.jpg">Añadir al carrito</button>
+                </div>
+              </div>
+              <div class="product-card fade-in" data-delay="360" data-product-name="Pulsera" data-product-price="4,00 €" data-product-cat="accesorios">
+                <img src="img/prod-pulsera.jpg" alt="Pulsera" loading="lazy" decoding="async">
+                <div class="product-card-body">
+                  <div class="product-name">Pulsera</div>
+                  <div class="product-price">4,00 €</div>
+                  <button class="btn btn-primary btn-full add-to-cart" data-name="Pulsera" data-price="4,00 €" data-img="img/prod-pulsera.jpg">Añadir al carrito</button>
+                </div>
+              </div>
+              <div class="product-card fade-in" data-delay="420" data-product-name="Medalla" data-product-price="12,00 €" data-product-cat="accesorios">
+                <img src="img/prod-medalla.jpg" alt="Medalla" loading="lazy" decoding="async">
+                <div class="product-card-body">
+                  <div class="product-name">Medalla</div>
+                  <div class="product-price">12,00 €</div>
+                  <button class="btn btn-primary btn-full add-to-cart" data-name="Medalla" data-price="12,00 €" data-img="img/prod-medalla.jpg">Añadir al carrito</button>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="product-card fade-in" data-delay="180" data-product-name="Taza conmemorativa" data-product-price="8,00 €" data-product-cat="hogar">
-            <img src="img/prod-taza.jpg" alt="Taza conmemorativa" loading="lazy" decoding="async">
-            <div class="product-card-body">
-              <div class="product-name">Taza conmemorativa</div>
-              <div class="product-price">8,00 €</div>
-              <button class="btn btn-primary btn-full add-to-cart" data-name="Taza conmemorativa" data-price="8,00 €" data-img="img/prod-taza.jpg">Añadir al carrito</button>
+          
+          <!-- Carrito Integrado -->
+          <div class="tienda-carrito-wrapper fade-in" data-delay="150" style="width:100%; max-width:320px; background:var(--white); border-radius:var(--radius-md); box-shadow:var(--shadow-sm); padding:20px; position:sticky; top:90px;">
+            <h3 style="color:var(--red-primary); font-family:'Playfair Display',serif; margin-bottom:16px; border-bottom:1px solid #eee; padding-bottom:8px;"><i class="fas fa-shopping-cart" style="color:var(--gold); margin-right:8px;"></i>Tu Compra</h3>
+            <div id="tienda-cart-items" style="display:flex; flex-direction:column; gap:16px; max-height:300px; overflow-y:auto; margin-bottom:20px;">
+              <div class="cart-empty" style="color:var(--gray); text-align:center; padding:20px 0;">Tu carrito está vacío</div>
+            </div>
+            <div style="border-top:1px solid #eee; padding-top:16px;">
+              <div style="display:flex; justify-content:space-between; font-weight:700; margin-bottom:16px;">
+                <span>Total:</span>
+                <span id="tienda-cart-total">0,00 €</span>
+              </div>
+              <button class="btn btn-primary btn-full" id="tienda-cart-checkout" disabled style="width:100%">Tramitar Pedido</button>
             </div>
           </div>
-          <div class="product-card fade-in" data-delay="240" data-product-name="Llavero" data-product-price="5,00 €" data-product-cat="accesorios">
-            <img src="img/prod-llavero.jpg" alt="Llavero" loading="lazy" decoding="async">
-            <div class="product-card-body">
-              <div class="product-name">Llavero</div>
-              <div class="product-price">5,00 €</div>
-              <button class="btn btn-primary btn-full add-to-cart" data-name="Llavero" data-price="5,00 €" data-img="img/prod-llavero.jpg">Añadir al carrito</button>
-            </div>
-          </div>
-          <div class="product-card fade-in" data-delay="300" data-product-name="Postal" data-product-price="2,50 €" data-product-cat="papeleria">
-            <img src="img/prod-postal.jpg" alt="Postal" loading="lazy" decoding="async">
-            <div class="product-card-body">
-              <div class="product-name">Postal</div>
-              <div class="product-price">2,50 €</div>
-              <button class="btn btn-primary btn-full add-to-cart" data-name="Postal" data-price="2,50 €" data-img="img/prod-postal.jpg">Añadir al carrito</button>
-            </div>
-          </div>
-          <div class="product-card fade-in" data-delay="360" data-product-name="Pulsera" data-product-price="4,00 €" data-product-cat="accesorios">
-            <img src="img/prod-pulsera.jpg" alt="Pulsera" loading="lazy" decoding="async">
-            <div class="product-card-body">
-              <div class="product-name">Pulsera</div>
-              <div class="product-price">4,00 €</div>
-              <button class="btn btn-primary btn-full add-to-cart" data-name="Pulsera" data-price="4,00 €" data-img="img/prod-pulsera.jpg">Añadir al carrito</button>
-            </div>
-          </div>
-          <div class="product-card fade-in" data-delay="420" data-product-name="Medalla" data-product-price="12,00 €" data-product-cat="accesorios">
-            <img src="img/prod-medalla.jpg" alt="Medalla" loading="lazy" decoding="async">
-            <div class="product-card-body">
-              <div class="product-name">Medalla</div>
-              <div class="product-price">12,00 €</div>
-              <button class="btn btn-primary btn-full add-to-cart" data-name="Medalla" data-price="12,00 €" data-img="img/prod-medalla.jpg">Añadir al carrito</button>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>
-    <section id="archivo" class="page-section bg-ivory" aria-label="Archivo Histórico Digital">
+    <section id="blog-cofrade" class="page-section bg-ivory" aria-label="Blog Cofrade y Libro de Firmas">
       <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
-        <h2 class="section-title fade-in" data-delay="0" style="text-align:center">Archivo Histórico Digital</h2>
+        <h2 class="section-title fade-in" data-delay="0" style="text-align:center">Blog Cofrade</h2>
         <div class="gold-divider center fade-in" data-delay="50"></div>
-        <p class="fade-in" data-delay="100" style="text-align:center;max-width:800px;margin:0 auto 32px;color:var(--gray)">La finalidad principal de la página web será servir como plataforma oficial para preservar, documentar y difundir la historia de la Cofradía del Santísimo Cristo Resucitado de Montoro. La web estará orientada especialmente a la divulgación de su patrimonio histórico, artístico, cultural y religioso, permitiendo que hermanos, devotos, investigadores y visitantes puedan conocer la trayectoria y actividad de la corporación.</p>
-        <div class="grid-3">
-          <div class="archivo-item fade-in" data-delay="120">
-            <img src="https://picsum.photos/600/450?random=200" alt="Fotografía histórica de la cofradía, año 1966" loading="lazy" decoding="async">
-            <span class="archivo-year">1966</span>
+        <p class="fade-in" data-delay="100" style="text-align:center;max-width:800px;margin:0 auto 32px;color:var(--gray)">Un espacio interactivo para compartir vivencias, historias y testimonios de la vida de nuestra Hermandad, preservando la memoria viva de nuestros hermanos.</p>
+        
+        <!-- Blog posts -->
+        <div class="blog-feed">
+          <div class="blog-post-card fade-in" data-delay="120">
+            <img src="https://picsum.photos/600/450?random=110" class="blog-post-img" alt="Hermandad en los años 80" loading="lazy" decoding="async">
+            <div class="blog-post-body">
+              <div>
+                <div class="blog-post-meta">Por Hermano Archivero | 24 de mayo de 2026</div>
+                <h3 class="blog-post-title">Cincuenta años de fe resucitada</h3>
+                <p class="blog-post-excerpt">Recordamos los inicios de la cofradía en la Ermita de Gracia, cuando un pequeño grupo de devotos fundó la hermandad con gran ilusión en 1966. Desde entonces, el Domingo de Resurrección ha sido el día más esperado de nuestra Semana Santa.</p>
+              </div>
+            </div>
           </div>
-          <div class="archivo-item fade-in" data-delay="180">
-            <img src="https://picsum.photos/600/450?random=202" alt="Fotografía histórica de la cofradía, año 1985" loading="lazy" decoding="async">
-            <span class="archivo-year">1985</span>
-          </div>
-          <div class="archivo-item fade-in" data-delay="240">
-            <img src="https://picsum.photos/600/450?random=204" alt="Fotografía histórica de la cofradía, año 1998" loading="lazy" decoding="async">
-            <span class="archivo-year">1998</span>
-          </div>
-          <div class="archivo-item fade-in" data-delay="300">
-            <img src="https://picsum.photos/600/450?random=206" alt="Fotografía histórica de la cofradía, año 2008" loading="lazy" decoding="async">
-            <span class="archivo-year">2008</span>
-          </div>
-          <div class="archivo-item fade-in" data-delay="360">
-            <img src="https://picsum.photos/600/450?random=208" alt="Fotografía histórica de la cofradía, año 2016" loading="lazy" decoding="async">
-            <span class="archivo-year">2016</span>
-          </div>
-          <div class="archivo-item fade-in" data-delay="420">
-            <img src="https://picsum.photos/600/450?random=210" alt="Fotografía histórica de la cofradía, año 2024" loading="lazy" decoding="async">
-            <span class="archivo-year">2024</span>
+          <div class="blog-post-card fade-in" data-delay="180">
+            <img src="https://picsum.photos/600/450?random=112" class="blog-post-img" alt="Detalle del paso de palio" loading="lazy" decoding="async">
+            <div class="blog-post-body">
+              <div>
+                <div class="blog-post-meta">Por Vocal de Juventud | 10 de mayo de 2026</div>
+                <h3 class="blog-post-title">El futuro de nuestra Hermandad</h3>
+                <p class="blog-post-excerpt">Los jóvenes cofrades representan el porvenir de la corporación. Repasamos las actividades del grupo de juventud y los proyectos formativos y de caridad que lideran para mantener viva nuestra hermandad en las nuevas generaciones.</p>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Guestbook / Libro de Firmas -->
+        <div class="guestbook-section fade-in" data-delay="240">
+          <h3 style="color:var(--red-primary);font-family:'Playfair Display',serif;margin-bottom:12px">Libro de Firmas de Hermanos</h3>
+          <p style="color:var(--gray);font-size:0.9rem;margin-bottom:20px">Deja tus reflexiones, peticiones o recuerdos para compartirlos con toda la comunidad cofrade.</p>
+          
+          <!-- Form -->
+          <form class="guestbook-form" id="guestbook-form" novalidate>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <input type="text" id="gb-name" placeholder="Nombre completo" required>
+              <input type="text" id="gb-role" placeholder="Cargo o condición (ej: Hermano de Luz, Costalero)" required>
+            </div>
+            <textarea id="gb-comment" rows="4" placeholder="Escribe aquí tu testimonio o comentario..." required></textarea>
+            <button type="submit" class="btn btn-primary" style="justify-self:start">Firmar en el libro</button>
+          </form>
+
+          <!-- Dynamic Comments List -->
+          <h4 style="margin-bottom:16px; font-family:'Playfair Display',serif; color:var(--red-primary)">Firmas recientes</h4>
+          <div class="comments-list" id="comments-list">
+            <div class="comment-item">
+              <div class="comment-avatar">JM</div>
+              <div class="comment-body">
+                <h5 style="margin-bottom:4px; font-weight:700">Juan Manuel Baena <span style="font-weight:400; color:var(--gray); font-size:0.8rem">| Hermano Fundador</span></h5>
+                <p style="font-size:0.9rem; color:var(--dark)">Una alegría ver cómo crece nuestra Hermandad año tras año sin perder la esencia de sus fundadores en 1966. Que el Señor Resucitado nos bendiga siempre.</p>
+              </div>
+            </div>
+            <div class="comment-item">
+              <div class="comment-avatar">ME</div>
+              <div class="comment-body">
+                <h5 style="margin-bottom:4px; font-weight:700">María Espósito <span style="font-weight:400; color:var(--gray); font-size:0.8rem">| Devota</span></h5>
+                <p style="font-size:0.9rem; color:var(--dark)">Excelente labor en redes y en la tienda. Ya tengo mi medalla reservada. ¡Deseando ver al Señor en las calles el próximo Domingo de Resurrección!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
     <section id="contacto" class="page-section bg-gray" aria-label="Contacto">
@@ -1362,9 +1747,9 @@ button.calendar-day.other {
   </main>
   <nav class="bottom-nav" id="bottom-nav" aria-label="Navegación inferior móvil">
     <a href="#inicio" data-nav="inicio"><i class="fas fa-home"></i><span>Inicio</span></a>
-    <a href="#noticias" data-nav="noticias"><i class="fas fa-newspaper"></i><span>Noticias</span></a>
+    <a href="#galeria-archivo" data-nav="galeria-archivo"><i class="fas fa-images"></i><span>Galería</span></a>
     <a href="#tienda" data-nav="tienda"><i class="fas fa-store"></i><span>Tienda</span></a>
-    <a href="#galeria" data-nav="galeria"><i class="fas fa-images"></i><span>Galería</span></a>
+    <a href="#blog-cofrade" data-nav="blog-cofrade"><i class="fas fa-pen-alt"></i><span>Blog</span></a>
     <a href="#contacto" data-nav="contacto"><i class="fas fa-envelope"></i><span>Contacto</span></a>
   </nav>
   <footer class="site-footer">
@@ -1381,11 +1766,12 @@ button.calendar-day.other {
         <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#historia">Historia</a></li>
-          <li><a href="#imágenes">Imágenes</a></li>
-          <li><a href="#junta">Junta</a></li>
-          <li><a href="#cultos">Cultos</a></li>
-          <li><a href="#semana-santa">Semana Santa</a></li>
+          <li><a href="#galeria-archivo">Galería y Archivo</a></li>
+          <li><a href="#cultos-semana-santa">Cultos y Semana Santa</a></li>
+          <li><a href="#blog-cofrade">Blog Cofrade</a></li>
           <li><a href="#noticias">Noticias</a></li>
+          <li><a href="#tienda">Tienda</a></li>
+          <li><a href="#hazte-hermano">Hazte Hermano</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
@@ -1443,7 +1829,7 @@ button.calendar-day.other {
 'use strict';
 (function() {
   // --- Pages ---
-  const pages = ['inicio','historia','imagenes','junta','cultos','semana-santa','hazte-hermano','noticias','galeria','tienda','archivo','contacto'];
+  const pages = ['inicio','historia','galeria-archivo','cultos-semana-santa','blog-cofrade','noticias','tienda','hazte-hermano','contacto'];
   let currentPage = 'inicio';
   let ssVisited = false;
 
@@ -1463,7 +1849,7 @@ button.calendar-day.other {
     $$('.dot').forEach((d,i) => d.classList.toggle('active', pages[i] === pageId));
     if (push !== false) history.pushState(null, '', '#' + pageId);
     triggerFadeIn(neu);
-    if (pageId === 'semana-santa' && !ssVisited) { ssVisited = true; runCounters(); }
+    if (pageId === 'cultos-semana-santa' && !ssVisited) { ssVisited = true; runCounters(); }
     closeMobileMenu();
     closeCart();
   }
@@ -1479,7 +1865,7 @@ button.calendar-day.other {
   }
 
   function runCounters() {
-    $$('#semana-santa .stat-number[data-animate]').forEach(el => {
+    $$('#cultos-semana-santa .stat-number[data-animate]').forEach(el => {
       const targetText = el.textContent.trim();
       const num = parseInt(targetText.replace(/\D/g,''), 10);
       if (isNaN(num)) return;
@@ -1696,9 +2082,9 @@ button.calendar-day.other {
       t.classList.add('active');
       const tab = t.getAttribute('data-gallery-tab');
       $$('.gallery-content').forEach(c => c.classList.remove('active'));
+      if (tab==='titulares') $('#tab-titulares').classList.add('active');
       if (tab==='fotos') $('#tab-fotos').classList.add('active');
-      if (tab==='videos') $('#tab-videos').classList.add('active');
-      if (tab==='archivo') $('#tab-archivo').classList.add('active');
+      if (tab==='documental') $('#tab-documental').classList.add('active');
     });
   });
   $$('#tab-fotos .filter-pill').forEach(btn => {
@@ -1782,9 +2168,12 @@ button.calendar-day.other {
   }
   function renderCart() {
     const container = $('#cart-items');
-    if (!cart.items.length) { container.innerHTML = '<div class="cart-empty">Tu carrito está vacío</div>'; }
-    else {
-      container.innerHTML = cart.items.map(it => {
+    const tiendaContainer = $('#tienda-cart-items');
+    let html = '';
+    if (!cart.items.length) {
+      html = '<div class="cart-empty">Tu carrito está vacío</div>';
+    } else {
+      html = cart.items.map(it => {
         const priceNum = parseFloat(it.price.replace(',','.').replace(' €',''));
         return '<div class="cart-item">' +
           '<img src="' + it.img + '" alt="' + it.name + '">' +
@@ -1801,14 +2190,32 @@ button.calendar-day.other {
         '</div>';
       }).join('');
     }
-    $('#cart-total').textContent = cart.getTotal().toFixed(2).replace('.',',') + ' €';
-    $('#cart-checkout').disabled = cart.items.length === 0;
+    if (container) container.innerHTML = html;
+    if (tiendaContainer) tiendaContainer.innerHTML = html;
+    
+    const formattedTotal = cart.getTotal().toFixed(2).replace('.',',') + ' €';
+    if ($('#cart-total')) $('#cart-total').textContent = formattedTotal;
+    if ($('#tienda-cart-total')) $('#tienda-cart-total').textContent = formattedTotal;
+    
+    const isCartEmpty = cart.items.length === 0;
+    if ($('#cart-checkout')) $('#cart-checkout').disabled = isCartEmpty;
+    if ($('#tienda-cart-checkout')) $('#tienda-cart-checkout').disabled = isCartEmpty;
   }
   function openCart() { $('#cart-sidebar').classList.add('open'); $('#cart-overlay').classList.add('open'); document.body.style.overflow='hidden'; }
   function closeCart() { $('#cart-sidebar').classList.remove('open'); $('#cart-overlay').classList.remove('open'); document.body.style.overflow=''; }
+  function checkoutCart() {
+    showToast('¡Compra tramitada con éxito! Gracias por colaborar con la cofradía.', 'success');
+    cart.items = [];
+    cart.save();
+    renderCart();
+    updateBadge();
+    closeCart();
+  }
   $('#cart-toggle').addEventListener('click', openCart);
   $('#cart-close').addEventListener('click', closeCart);
   $('#cart-overlay').addEventListener('click', closeCart);
+  if ($('#cart-checkout')) $('#cart-checkout').addEventListener('click', checkoutCart);
+  if ($('#tienda-cart-checkout')) $('#tienda-cart-checkout').addEventListener('click', checkoutCart);
   document.addEventListener('keydown', e => { if (e.key==='Escape') closeCart(); });
   document.addEventListener('click', e => {
     const btn = e.target.closest('.add-to-cart');
@@ -1859,7 +2266,33 @@ button.calendar-day.other {
       e.preventDefault();
       let ok = true;
       form.querySelectorAll('input, textarea').forEach(inp => { if (!validateField(inp)) ok = false; });
-      if (ok) { showToast('Formulario enviado correctamente', 'success'); form.reset(); }
+      if (ok) {
+        if (form.id === 'guestbook-form') {
+          const nameVal = $('#gb-name').value.trim();
+          const roleVal = $('#gb-role').value.trim();
+          const commentVal = $('#gb-comment').value.trim();
+          const initials = nameVal.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+          
+          const commentItem = document.createElement('div');
+          commentItem.className = 'comment-item';
+          commentItem.innerHTML = `
+            <div class="comment-avatar">${initials}</div>
+            <div class="comment-body">
+              <h5 style="margin-bottom:4px; font-weight:700">${nameVal} <span style="font-weight:400; color:var(--gray); font-size:0.8rem">| ${roleVal}</span></h5>
+              <p style="font-size:0.9rem; color:var(--dark)">${commentVal}</p>
+            </div>
+          `;
+          
+          const list = $('#comments-list');
+          if (list) {
+            list.insertBefore(commentItem, list.firstChild);
+          }
+          showToast('¡Gracias! Tu firma ha sido añadida con éxito.', 'success');
+        } else {
+          showToast('Formulario enviado correctamente', 'success');
+        }
+        form.reset();
+      }
       else { showToast('Por favor, corrige los errores del formulario', 'error'); }
     });
     form.querySelectorAll('input, textarea').forEach(inp => {
