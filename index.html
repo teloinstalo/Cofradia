@@ -718,7 +718,7 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .toast-error { background: rgba(139,0,0,0.95); }
 .toast-info { background: rgba(21,101,192,0.95); }
 
-/* Bottom nav (mobile) — removed, replaced by top-tabs */
+/* Bottom nav (mobile) — removed */
 
 /* Footer — dark, refined */
 .site-footer {
@@ -777,41 +777,7 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .legal-section p, .legal-section li { font-size: 0.9rem; color: var(--dark); line-height: 1.8; }
 .legal-section ul { padding-left: 20px; margin: 12px 0; }
 .legal-section li { margin-bottom: 6px; }
-
-/* Top tabs (mobile) — scrollable, Instagram style */
-.top-tabs {
-  display: none;
-  position: fixed; top: 64px; left: 0; right: 0; z-index: 950;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-  padding: 0 12px;
-}
-.top-tabs::-webkit-scrollbar { display: none; }
-.top-tabs-inner {
-  display: flex; gap: 0; min-width: max-content;
-}
-.top-tabs a {
-  padding: 12px 14px; font-size: 0.78rem; font-weight: 600; white-space: nowrap;
-  color: var(--gray); border-bottom: 2px solid transparent;
-  transition: all var(--transition-fast); flex-shrink: 0;
-}
-.top-tabs a:hover { color: var(--dark); }
-.top-tabs a.active { color: var(--red-primary); border-bottom-color: var(--red-primary); }
-
-@media (max-width: 767px) {
-  .top-tabs { display: block; }
-  body { padding-top: 112px; }
-  .page-section { padding-top: 112px; }
-}
 @media (min-width: 768px) {
-  .top-tabs { display: none !important; }
-}
-@media (max-width: 480px) {
-  .top-tabs a { padding: 12px 10px; font-size: 0.72rem; }
-}
-
 /* Floating contact button */
 .floating-contact {
   position: fixed; bottom: 24px; left: 24px; z-index: 900;
@@ -2237,19 +2203,6 @@ button.calendar-day.other {
       </div>
     </section>
   </main>
-  <!-- Top tabs (mobile) — scrollable navigation -->
-  <nav class="top-tabs" id="top-tabs" aria-label="Navegación rápida móvil">
-    <div class="top-tabs-inner">
-      <a href="#inicio" data-nav="inicio">Inicio</a>
-      <a href="#historia" data-nav="historia">Historia</a>
-      <a href="#galeria-archivo" data-nav="galeria-archivo">Galería</a>
-      <a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Semana Santa</a>
-      <a href="#noticias" data-nav="noticias">Noticias</a>
-      <a href="#tienda" data-nav="tienda">Tienda</a>
-      <a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a>
-      <a href="#contacto" data-nav="contacto">Contacto</a>
-    </div>
-  </nav>
   <footer class="bg-[var(--dark)] text-gray-500 border-t-[3px] border-[var(--gold)] pt-14 px-6">
     <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
       <div>
