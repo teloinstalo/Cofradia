@@ -360,10 +360,6 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .menu-overlay.open li:nth-child(8) a { transition-delay: 0.27s; }
 .menu-overlay.open li:nth-child(9) a { transition-delay: 0.30s; }
 .menu-overlay a:hover, .menu-overlay a.active { color: var(--white); transform: translateY(-2px); }
-.menu-overlay .menu-close-hint {
-  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-  color: rgba(255,255,255,0.4); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
-}
 
 @media (max-width: 1199px) {
   .desktop-nav { display: none; }
@@ -1207,7 +1203,7 @@ button.calendar-day.other {
         <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
         <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
       </ul>
-      <span class="menu-close-hint">Toca para cerrar</span>
+
     </nav>
   </div>
   <nav class="section-dots" id="section-dots" aria-label="Navegación rápida de secciones"></nav>
@@ -2516,7 +2512,7 @@ button.calendar-day.other {
   }
   menuToggle.addEventListener('click', toggleOverlay);
   menuOverlay.addEventListener('click', e => {
-    if (e.target === menuOverlay || e.target.closest('.menu-close-hint')) closeOverlay();
+    if (e.target === menuOverlay) closeOverlay();
   });
   menuOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeOverlay));
 
