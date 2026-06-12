@@ -275,18 +275,6 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 2px 6px rgba(139,0,0,0.3);
 }
-.hamburger {
-  width: 28px; height: 20px; position: relative; display: flex; flex-direction: column; justify-content: space-between;
-}
-.hamburger span {
-  display: block; width: 100%; height: 2px; background: var(--dark);
-  border-radius: 2px; transition: all 0.35s var(--ease-spring);
-  transform-origin: center;
-}
-.hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-
 /* Desktop nav */
 .desktop-nav { display: none; }
 .desktop-nav ul { display: flex; gap: 2px; list-style: none; }
@@ -302,7 +290,6 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 @media (min-width: 1200px) {
   .site-header { height: 80px; padding: 0 36px; }
   .header-brand img { width: 56px; height: 56px; }
-  .hamburger { display: none; }
   .desktop-nav { display: block; }
 }
 @media (max-width: 480px) {
@@ -311,27 +298,67 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
   .header-brand img { width: 36px; height: 36px; }
 }
 
-/* Mobile menu — refined */
-.mobile-menu {
-  position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 380px;
-  background: var(--white); z-index: 1100;
-  transform: translateX(100%); transition: transform 0.4s var(--ease-out-expo);
-  box-shadow: -8px 0 30px rgba(0,0,0,0.1); padding: 80px 28px 28px;
-  overflow-y: auto;
+/* Mobile tabs — Instagram-style scrollable */
+.mobile-tabs {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  padding: 8px 0;
+  z-index: 999;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none;
 }
-.mobile-menu.open { transform: translateX(0); }
-.mobile-menu-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1050;
-  opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
-  backdrop-filter: blur(4px);
+.mobile-tabs::-webkit-scrollbar {
+  display: none;
 }
-.mobile-menu-overlay.open { opacity: 1; visibility: visible; }
-.mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.mobile-menu a {
-  display: block; padding: 14px 18px; border-radius: var(--radius-sm);
-  font-size: 1rem; color: var(--dark); transition: all var(--transition-fast); font-weight: 500;
+.mobile-tabs .tabs-scroll {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px;
 }
-.mobile-menu a:hover, .mobile-menu a.active { background: var(--red-primary); color: var(--white); transform: translateX(4px); }
+.mobile-tabs ul {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mobile-tabs a {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--dark);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+.mobile-tabs a:hover {
+  background: rgba(139,0,0,0.06);
+  color: var(--red-primary);
+}
+.mobile-tabs a.active {
+  background: var(--red-primary);
+  color: var(--white);
+  box-shadow: 0 2px 8px rgba(139,0,0,0.2);
+}
+
+@media (max-width: 1199px) {
+  .desktop-nav { display: none; }
+  .mobile-tabs { display: block; }
+  .site-header { height: 64px; }
+}
+
+@media (min-width: 1200px) {
+  .mobile-tabs { display: none; }
+}
 
 /* Section dots — refined */
 .section-dots {
@@ -1120,24 +1147,22 @@ button.calendar-day.other {
       <button class="w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all hover:bg-[rgba(139,0,0,0.06)] hover:text-[var(--red-primary)]" id="user-toggle" aria-label="Acceso de hermanos">
         <i class="fas fa-user"></i>
       </button>
-      <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </header>
-  <div class="mobile-menu-overlay" id="mobile-overlay"></div>
-  <nav class="mobile-menu" id="mobile-menu" aria-label="Navegación principal móvil">
-    <ul>
-      <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
-      <li><a href="#historia" data-nav="historia">Historia</a></li>
-      <li><a href="#galeria-archivo" data-nav="galeria-archivo">Galería</a></li>
-      <li><a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Cultos y Semana Santa</a></li>
-      <li><a href="#blog-cofrade" data-nav="blog-cofrade">Blog Cofrade</a></li>
-      <li><a href="#noticias" data-nav="noticias">Noticias</a></li>
-      <li><a href="#tienda" data-nav="tienda">Tienda</a></li>
-      <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
-      <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
-    </ul>
+  <nav class="mobile-tabs" id="mobile-tabs" aria-label="Navegación principal móvil">
+    <div class="tabs-scroll">
+      <ul>
+        <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
+        <li><a href="#historia" data-nav="historia">Historia</a></li>
+        <li><a href="#galeria-archivo" data-nav="galeria-archivo">Galería</a></li>
+        <li><a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Cultos</a></li>
+        <li><a href="#blog-cofrade" data-nav="blog-cofrade">Blog</a></li>
+        <li><a href="#noticias" data-nav="noticias">Noticias</a></li>
+        <li><a href="#tienda" data-nav="tienda">Tienda</a></li>
+        <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte</a></li>
+        <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
+      </ul>
+    </div>
   </nav>
   <nav class="section-dots" id="section-dots" aria-label="Navegación rápida de secciones"></nav>
   <main id="main-content" tabindex="-1" style="outline:none">
@@ -2420,20 +2445,7 @@ button.calendar-day.other {
     dotsNav.appendChild(btn);
   });
 
-  // Mobile menu
-  const hamburger = $('#hamburger');
-  const mobileMenu = $('#mobile-menu');
-  const mobileOverlay = $('#mobile-overlay');
-  function toggleMobileMenu() { hamburger.classList.toggle('active'); mobileMenu.classList.toggle('open'); mobileOverlay.classList.toggle('open'); }
-  function closeMobileMenu() { hamburger.classList.remove('active'); mobileMenu.classList.remove('open'); mobileOverlay.classList.remove('open'); }
-  hamburger.addEventListener('click', toggleMobileMenu);
-  mobileOverlay.addEventListener('click', closeMobileMenu);
-  document.addEventListener('keydown', e => { if (e.key==='Escape') { closeMobileMenu(); if (typeof closeEventModal === 'function') closeEventModal(); } });
-  let touchStartX = 0;
-  mobileMenu.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
-  mobileMenu.addEventListener('touchend', e => {
-    if (e.changedTouches[0].screenX - touchStartX > 60) closeMobileMenu();
-  });
+
 
   // Header scroll glass
   const header = $('#site-header');
