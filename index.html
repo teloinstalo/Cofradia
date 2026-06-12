@@ -250,6 +250,10 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
   padding: 0 20px; transition: all var(--transition-normal);
 }
 .site-header.scrolled { background: rgba(250,250,248,0.95); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+.site-header.menu-open { background: transparent; border-bottom: none; }
+.site-header.menu-open .header-brand span,
+.site-header.menu-open .cart-btn,
+.site-header.menu-open .header-actions button { color: var(--white); }
 .header-brand {
   display: flex; align-items: center; gap: 12px;
   transition: opacity var(--transition-fast);
@@ -298,66 +302,77 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
   .header-brand img { width: 36px; height: 36px; }
 }
 
-/* Mobile tabs — Instagram-style scrollable */
-.mobile-tabs {
+/* Mobile menu overlay — full-screen */
+.menu-toggle {
   display: none;
-  position: fixed;
-  top: 64px;
-  left: 0;
-  right: 0;
-  background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding: 8px 0;
-  z-index: 999;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-  scrollbar-width: none;
+  width: 44px; height: 44px;
+  background: none; border: none; cursor: pointer;
+  position: relative; z-index: 1101;
+  flex-direction: column; align-items: center; justify-content: center; gap: 5px;
 }
-.mobile-tabs::-webkit-scrollbar {
-  display: none;
+.menu-toggle span {
+  display: block; width: 22px; height: 2px; background: var(--dark);
+  border-radius: 2px; transition: all 0.4s var(--ease-spring);
+  transform-origin: center;
 }
-.mobile-tabs .tabs-scroll {
-  display: flex;
-  gap: 8px;
-  padding: 0 16px;
-}
-.mobile-tabs ul {
-  display: flex;
-  gap: 8px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.mobile-tabs a {
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--dark);
-  transition: all var(--transition-fast);
-  white-space: nowrap;
-}
-.mobile-tabs a:hover {
-  background: rgba(139,0,0,0.06);
-  color: var(--red-primary);
-}
-.mobile-tabs a.active {
+.menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--white); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--white); }
+
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 1100;
   background: var(--red-primary);
-  color: var(--white);
-  box-shadow: 0 2px 8px rgba(139,0,0,0.2);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.5s var(--ease-spring), visibility 0.5s;
+}
+.menu-overlay.open { opacity: 1; visibility: visible; }
+.menu-overlay nav {
+  text-align: center;
+}
+.menu-overlay ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.menu-overlay a {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  padding: 4px 16px;
+  border-radius: var(--radius-sm);
+  transition: all 0.4s var(--ease-spring);
+  opacity: 0; transform: translateY(30px);
+}
+.menu-overlay.open a {
+  opacity: 1; transform: translateY(0);
+}
+.menu-overlay.open a:nth-child(1) { transition-delay: 0.05s; }
+.menu-overlay.open li:nth-child(1) a { transition-delay: 0.06s; }
+.menu-overlay.open li:nth-child(2) a { transition-delay: 0.09s; }
+.menu-overlay.open li:nth-child(3) a { transition-delay: 0.12s; }
+.menu-overlay.open li:nth-child(4) a { transition-delay: 0.15s; }
+.menu-overlay.open li:nth-child(5) a { transition-delay: 0.18s; }
+.menu-overlay.open li:nth-child(6) a { transition-delay: 0.21s; }
+.menu-overlay.open li:nth-child(7) a { transition-delay: 0.24s; }
+.menu-overlay.open li:nth-child(8) a { transition-delay: 0.27s; }
+.menu-overlay.open li:nth-child(9) a { transition-delay: 0.30s; }
+.menu-overlay a:hover, .menu-overlay a.active { color: var(--white); transform: translateY(-2px); }
+.menu-overlay .menu-close-hint {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,0.4); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
 }
 
 @media (max-width: 1199px) {
   .desktop-nav { display: none; }
-  .mobile-tabs { display: block; }
+  .menu-toggle { display: flex; }
   .site-header { height: 64px; }
 }
-
 @media (min-width: 1200px) {
-  .mobile-tabs { display: none; }
+  .menu-toggle { display: none; }
+  .menu-overlay { display: none !important; }
 }
 
 /* Section dots — refined */
@@ -817,7 +832,7 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 
 /* Print */
 @media print {
-  .site-header, .site-footer, .section-dots, .cart-sidebar, .cart-overlay, .lightbox-modal, .toast-container, .mobile-menu, .mobile-menu-overlay, .cookie-banner, .floating-contact { display: none !important; }
+  .site-header, .site-footer, .section-dots, .cart-sidebar, .cart-overlay, .lightbox-modal, .toast-container, .menu-overlay, .cookie-banner, .floating-contact { display: none !important; }
   .page-section { display: block !important; min-height: auto; page-break-inside: avoid; }
 }
 
@@ -1174,23 +1189,27 @@ button.calendar-day.other {
       <button class="w-8 h-8 rounded-full flex items-center justify-center text-sm transition-all hover:bg-[rgba(139,0,0,0.06)] hover:text-[var(--red-primary)]" id="user-toggle" aria-label="Acceso de hermanos">
         <i class="fas fa-user"></i>
       </button>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
-  <nav class="mobile-tabs" id="mobile-tabs" aria-label="Navegación principal móvil">
-    <div class="tabs-scroll">
+  <div class="menu-overlay" id="menu-overlay">
+    <nav>
       <ul>
         <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
         <li><a href="#historia" data-nav="historia">Historia</a></li>
         <li><a href="#galeria-archivo" data-nav="galeria-archivo">Galería</a></li>
-        <li><a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Cultos</a></li>
-        <li><a href="#blog-cofrade" data-nav="blog-cofrade">Blog</a></li>
+        <li><a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Cultos y Semana Santa</a></li>
+        <li><a href="#blog-cofrade" data-nav="blog-cofrade">Blog Cofrade</a></li>
         <li><a href="#noticias" data-nav="noticias">Noticias</a></li>
         <li><a href="#tienda" data-nav="tienda">Tienda</a></li>
-        <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte</a></li>
+        <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
         <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
       </ul>
-    </div>
-  </nav>
+      <span class="menu-close-hint">Toca para cerrar</span>
+    </nav>
+  </div>
   <nav class="section-dots" id="section-dots" aria-label="Navegación rápida de secciones"></nav>
   <main id="main-content" tabindex="-1" style="outline:none">
     <section id="inicio" class="page-section hero-section active" aria-label="Portada">
@@ -2412,7 +2431,7 @@ button.calendar-day.other {
     if (old) { old.classList.remove('active'); }
     if (neu) { neu.classList.add('active'); window.scrollTo(0,0); }
     currentPage = pageId;
-    $$('a[data-nav], .mobile-menu a, .desktop-nav a, .top-tabs a').forEach(a => {
+    $$('a[data-nav], .menu-overlay a, .desktop-nav a').forEach(a => {
       a.classList.toggle('active', a.getAttribute('data-nav') === pageId || a.getAttribute('href') === '#' + pageId);
     });
     $$('.dot').forEach((d,i) => d.classList.toggle('active', pages[i] === pageId));
@@ -2479,6 +2498,27 @@ button.calendar-day.other {
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 10);
   });
+
+  // Full-screen menu overlay
+  const menuToggle = $('#menu-toggle');
+  const menuOverlay = $('#menu-overlay');
+  function toggleOverlay() {
+    const isOpen = menuOverlay.classList.toggle('open');
+    menuToggle.classList.toggle('active', isOpen);
+    header.classList.toggle('menu-open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  function closeOverlay() {
+    menuOverlay.classList.remove('open');
+    menuToggle.classList.remove('active');
+    header.classList.remove('menu-open');
+    document.body.style.overflow = '';
+  }
+  menuToggle.addEventListener('click', toggleOverlay);
+  menuOverlay.addEventListener('click', e => {
+    if (e.target === menuOverlay || e.target.closest('.menu-close-hint')) closeOverlay();
+  });
+  menuOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeOverlay));
 
   // Keyboard navigation
   document.addEventListener('keydown', e => {
