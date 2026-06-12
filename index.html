@@ -381,9 +381,13 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
   background: url('img/imagen%20inicio_jesus_resucitado.jpg') center/cover no-repeat;
+  background-position: 35% center;
   transition: transform 20s linear;
 }
 .hero-section:hover .hero-bg { transform: scale(1.03); }
+@media (max-width: 768px) {
+  .hero-bg { background-position: 30% center !important; }
+}
 @supports (background-attachment: fixed) {
   .hero-bg { background-attachment: fixed; }
 }
