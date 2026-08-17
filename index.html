@@ -290,6 +290,20 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 }
 .desktop-nav a:hover { background: rgba(139,0,0,0.06); color: var(--red-primary); }
 .desktop-nav a.active { background: var(--red-primary); color: var(--white); box-shadow: 0 2px 8px rgba(139,0,0,0.2); }
+.desktop-nav li { position: relative; }
+.desktop-nav .subnav {
+  position: absolute; top: 100%; left: 0; z-index: 50;
+  min-width: 210px; flex-direction: column; gap: 2px;
+  background: var(--white); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md); padding: 8px;
+  border: 1px solid rgba(0,0,0,0.05);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: all 0.25s var(--ease-spring);
+}
+.desktop-nav li:hover > .subnav,
+.desktop-nav li:focus-within > .subnav { opacity: 1; visibility: visible; transform: translateY(0); }
+.desktop-nav .subnav a { display: block; padding: 9px 12px; font-size: 0.82rem; white-space: nowrap; }
+.desktop-nav .subnav a:hover { background: rgba(139,0,0,0.06); color: var(--red-primary); }
 
 @media (min-width: 1200px) {
   .site-header { height: 80px; padding: 0 36px; }
@@ -360,6 +374,30 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
 .menu-overlay.open li:nth-child(8) a { transition-delay: 0.27s; }
 .menu-overlay.open li:nth-child(9) a { transition-delay: 0.30s; }
 .menu-overlay a:hover, .menu-overlay a.active { color: var(--white); transform: translateY(-2px); }
+.menu-overlay .overlay-parent {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  padding: 4px 16px;
+  border-radius: var(--radius-sm);
+  transition: all 0.4s var(--ease-spring);
+  opacity: 0; transform: translateY(30px);
+}
+.menu-overlay.open .overlay-parent { opacity: 1; transform: translateY(0); }
+.menu-overlay .overlay-parent i { font-size: 1.1rem; transition: transform 0.3s; }
+.menu-overlay li.open .overlay-parent i { transform: rotate(180deg); }
+.menu-overlay .overlay-subnav {
+  max-height: 0; overflow: hidden; gap: 6px;
+  transition: max-height 0.4s var(--ease-spring);
+}
+.menu-overlay li.open .overlay-subnav { max-height: 420px; }
+.menu-overlay .overlay-subnav a {
+  font-family: var(--font-body); font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-weight: 500; color: rgba(255,255,255,0.6);
+  opacity: 1; transform: none;
+}
 
 @media (max-width: 1199px) {
   .desktop-nav { display: none !important; }
@@ -495,6 +533,12 @@ p, li { font-size: clamp(0.9rem, 1.5vw, 1rem); }
   background: linear-gradient(transparent, rgba(0,0,0,0.7));
   color: var(--white); padding: 20px 16px 16px; font-weight: 700;
   letter-spacing: -0.01em;
+}
+.img-card-caption {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  color: rgba(255,255,255,0.85); padding: 26px 16px 12px;
+  font-size: 0.82rem;
 }
 .badge {
   position: absolute; top: 12px; right: 12px;
@@ -1130,20 +1174,27 @@ button.calendar-day.other {
       <span class="brand-short">Cristo Resucitado</span>
       <span class="brand-full">Cofradía del Santísimo Cristo Resucitado</span>
     </a>
-    <nav class="desktop-nav" aria-label="Navegación principal">
-      <ul>
-        <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
-        <li><a href="#historia" data-nav="historia">Historia</a></li>
-        <li><a href="#nuestro-titular" data-nav="nuestro-titular">Nuestro Titular</a></li>
-        <li><a href="#galeria-archivo" data-nav="galeria-archivo">Galería</a></li>
-        <li><a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Cultos y Semana Santa</a></li>
-        <li><a href="#blog-cofrade" data-nav="blog-cofrade">Blog Cofrade</a></li>
-        <li><a href="#noticias" data-nav="noticias">Noticias</a></li>
-        <li><a href="#tienda" data-nav="tienda">Tienda</a></li>
-        <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
-        <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
-      </ul>
-    </nav>
+<nav class="desktop-nav" aria-label="Navegación principal">
+    <ul>
+      <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
+      <li>
+        <a href="#historia" class="cofradia-toggle">LA COFRADÍA ▾</a>
+        <ul class="subnav">
+          <li><a href="#historia" data-nav="historia">Historia</a></li>
+          <li><a href="#nuestro-titular" data-nav="nuestro-titular">Nuestro Titular</a></li>
+          <li><a href="#figuras-secundarias" data-nav="figuras-secundarias">Figuras Secundarias</a></li>
+          <li><a href="#patrimonio" data-nav="patrimonio">Patrimonio</a></li>
+          <li><a href="#junta-gobierno" data-nav="junta-gobierno">Junta de Gobierno</a></li>
+        </ul>
+      </li>
+      <li><a href="#actualidad" data-nav="actualidad">Actualidad</a></li>
+      <li><a href="#grupo-joven" data-nav="grupo-joven">Grupo Joven</a></li>
+      <li><a href="#nuevos-hermanos" data-nav="nuevos-hermanos">Nuevos Hermanos</a></li>
+      <li><a href="#galeria" data-nav="galeria">Galería</a></li>
+      <li><a href="#tienda" data-nav="tienda">Tienda</a></li>
+      <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
+    </ul>
+  </nav>
     <div class="header-actions">
       <button class="cart-btn" id="cart-toggle" aria-label="Abrir carrito de compras">
         <i class="fas fa-shopping-cart"></i>
@@ -1161,14 +1212,21 @@ button.calendar-day.other {
     <nav>
       <ul>
         <li><a href="#inicio" data-nav="inicio">Inicio</a></li>
-        <li><a href="#historia" data-nav="historia">Historia</a></li>
-        <li><a href="#nuestro-titular" data-nav="nuestro-titular">Nuestro Titular</a></li>
-        <li><a href="#galeria-archivo" data-nav="galeria-archivo">Galería</a></li>
-        <li><a href="#cultos-semana-santa" data-nav="cultos-semana-santa">Cultos y Semana Santa</a></li>
-        <li><a href="#blog-cofrade" data-nav="blog-cofrade">Blog Cofrade</a></li>
-        <li><a href="#noticias" data-nav="noticias">Noticias</a></li>
+        <li>
+          <span class="overlay-parent">La Cofradía <i class="fas fa-chevron-down"></i></span>
+          <ul class="overlay-subnav">
+            <li><a href="#historia" data-nav="historia">Historia</a></li>
+            <li><a href="#nuestro-titular" data-nav="nuestro-titular">Nuestro Titular</a></li>
+            <li><a href="#figuras-secundarias" data-nav="figuras-secundarias">Figuras Secundarias</a></li>
+            <li><a href="#patrimonio" data-nav="patrimonio">Patrimonio</a></li>
+            <li><a href="#junta-gobierno" data-nav="junta-gobierno">Junta de Gobierno</a></li>
+          </ul>
+        </li>
+        <li><a href="#actualidad" data-nav="actualidad">Actualidad</a></li>
+        <li><a href="#grupo-joven" data-nav="grupo-joven">Grupo Joven</a></li>
+        <li><a href="#nuevos-hermanos" data-nav="nuevos-hermanos">Nuevos Hermanos</a></li>
+        <li><a href="#galeria" data-nav="galeria">Galería</a></li>
         <li><a href="#tienda" data-nav="tienda">Tienda</a></li>
-        <li><a href="#hazte-hermano" data-nav="hazte-hermano">Hazte Hermano</a></li>
         <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
       </ul>
 
@@ -2058,7 +2116,7 @@ button.calendar-day.other {
         <div style="text-align:center;margin-top:32px" class="fade-in" data-delay="400"><a href="#noticias" class="btn btn-outline" style="border-color:var(--red-primary);color:var(--red-primary)">Ver todas las noticias</a></div>
       </div>
     </section>
-    <section id="galeria-archivo" class="page-section bg-ivory" aria-label="Galería y Archivo">
+    <section id="galeria" class="page-section bg-ivory" aria-label="Galería y Archivo">
       <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
         <h2 class="section-title fade-in" data-delay="0">Galería y Archivo</h2>
         <div class="gold-divider fade-in" data-delay="50"></div>
@@ -2247,6 +2305,179 @@ button.calendar-day.other {
           </div>
         </div>
         
+      </div>
+    </section>
+    <section id="actualidad" class="page-section bg-gray" aria-label="Actualidad">
+      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
+        <h2 class="section-title fade-in" data-delay="0">Actualidad</h2>
+        <div class="gold-divider fade-in" data-delay="50"></div>
+        <p class="fade-in text-center text-[var(--gray)] max-w-2xl mx-auto mb-8" data-delay="100">Aquí encontrarás los actos, cultos y actividades más recientes de la Cofradía. También puedes consultar todas las noticias en nuestra sección de <a href="#noticias" data-nav="noticias" class="text-[var(--red-primary)] underline">Noticias</a>.</p>
+        <div class="grid-3">
+          <div class="img-card fade-in" data-delay="100">
+            <img src="img/cartel-triduo-2019.jpg" alt="Cartel del Solemne Triduo" loading="lazy" decoding="async">
+            <span class="badge">Triduo</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Solemne Triduo al Resucitado</div>
+          </div>
+          <div class="img-card fade-in" data-delay="150">
+            <img src="img/cartel-via-lucis-2019.jpg" alt="Cartel del Vía Lucis" loading="lazy" decoding="async">
+            <span class="badge">Culto</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Vía Lucis</div>
+          </div>
+          <div class="img-card fade-in" data-delay="200">
+            <img src="img/cartel-san-anton.jpg" alt="Cartel de San Antón" loading="lazy" decoding="async">
+            <span class="badge">Actividad</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Fiesta de San Antón</div>
+          </div>
+          <div class="img-card fade-in" data-delay="250">
+            <img src="img/cartel-cruz-mayo-2016.jpg" alt="Cartel de la Cruz de Mayo" loading="lazy" decoding="async">
+            <span class="badge">Actividad</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Cruz de Mayo</div>
+          </div>
+          <div class="img-card fade-in" data-delay="300">
+            <img src="img/cartel-cata-vino-2019.jpg" alt="Cartel de la cata de vino" loading="lazy" decoding="async">
+            <span class="badge">Evento</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Cata de Vino</div>
+          </div>
+          <div class="img-card fade-in" data-delay="350">
+            <img src="img/cartel-dona-juguete.jpg" alt="Cartel de la campaña del juguete" loading="lazy" decoding="async">
+            <span class="badge">Solidaridad</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Campaña del Juguete</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="grupo-joven" class="page-section bg-ivory" aria-label="Grupo Joven">
+      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
+        <h2 class="section-title fade-in" data-delay="0">Grupo Joven</h2>
+        <div class="gold-divider fade-in" data-delay="50"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 items-center">
+          <div class="fade-in" data-delay="100">
+            <p class="mb-4 text-[0.95rem] leading-[1.8]">Tras muchos años, la Cofradía recupera su <strong>Grupo Joven</strong>, un espacio de encuentro, formación y convivencia para los más jóvenes de la hermandad. Un proyecto ilusionante con el que queremos transmitir nuestra fe y nuestras tradiciones a las nuevas generaciones.</p>
+            <p class="mb-4 text-[0.95rem] leading-[1.8]">A través de actividades lúdicas, cultos, convivencias y colaboraciones con la Cofradía, los jóvenes participan de forma activa en la vida de la hermandad y en la organización de sus propios actos.</p>
+            <div class="bg-white rounded-[var(--radius-md)] shadow-[var(--shadow-sm)] p-4 border-l-4 border-[var(--red-primary)]">
+              <div class="flex items-center gap-2.5 mb-2"><i class="fas fa-users text-[var(--red-primary)]"></i><strong>¿Cómo participar?</strong></div>
+              <p class="text-[0.85rem] text-[var(--gray)] leading-[1.7]">Si eres joven y quieres formar parte, acércate a la Casa de Hermandad o escríbenos a través de nuestras redes sociales. ¡Te esperamos!</p>
+            </div>
+            <a href="#nuevos-hermanos" class="btn btn-outline mt-5 border-[var(--red-primary)] text-[var(--red-primary)]" data-nav="nuevos-hermanos"><i class="fas fa-handshake mr-1.5"></i>Hazte hermano</a>
+          </div>
+          <div class="img-card fade-in" data-delay="150">
+            <img src="img/reparto-juguetes.jpg" alt="Actividad solidaria de la Cofradía" loading="lazy" decoding="async">
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Actividades solidarias del Grupo Joven</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="nuevos-hermanos" class="page-section bg-gray" aria-label="Nuevos Hermanos">
+      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
+        <h2 class="section-title fade-in" data-delay="0">Nuevos Hermanos</h2>
+        <div class="gold-divider fade-in" data-delay="50"></div>
+        <p class="fade-in text-center text-[var(--gray)] max-w-2xl mx-auto mb-8" data-delay="100">Hacerse hermano de la Cofradía del Santísimo Cristo Resucitado de Montoro es un acto de fe y compromiso con nuestras tradiciones. La cuota anual es de <strong>6 €</strong>, que puedes abonar mediante Bizum o directamente al cobrador de la hermandad.</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="bg-white rounded-[var(--radius-md)] shadow-[var(--shadow-sm)] p-6 border-2 border-[var(--red-primary)] text-center fade-in" data-delay="150">
+            <i class="fas fa-mobile-alt text-3xl text-[var(--red-primary)] mb-3"></i>
+            <div class="text-xl font-bold text-[var(--red-primary)] mb-1">Pago por Bizum</div>
+            <p class="text-[var(--gray)] text-[0.9rem] mb-3">Escanea el código o realiza un Bizum a la Cofradía indicando tu nombre y apellidos en el concepto.</p>
+            <div class="inline-flex items-center gap-2 bg-gray-100 rounded-lg px-4 py-2 font-mono text-sm">Bizum: 673 83 65 57</div>
+          </div>
+          <div class="bg-white rounded-[var(--radius-md)] shadow-[var(--shadow-sm)] p-6 border-2 border-[var(--gold)] text-center fade-in" data-delay="200">
+            <i class="fas fa-hand-holding-usd text-3xl text-[var(--gold)] mb-3"></i>
+            <div class="text-xl font-bold text-[var(--gold)] mb-1">Pago al cobrador</div>
+            <p class="text-[var(--gray)] text-[0.9rem] mb-3">También puedes abonar tu cuota en efectivo directamente al cobrador de la hermandad o en la Casa de Hermandad.</p>
+            <div class="inline-flex items-center gap-2 bg-gray-100 rounded-lg px-4 py-2 text-sm"><i class="fas fa-map-marker-alt text-[var(--red-primary)]"></i>C/ Virgen de Gracia, 22</div>
+          </div>
+        </div>
+        <div class="mt-8 bg-white rounded-[var(--radius-md)] shadow-[var(--shadow-sm)] p-6 fade-in" data-delay="250">
+          <div class="flex items-center gap-2.5 mb-3"><i class="fas fa-file-signature text-[var(--red-primary)]"></i><strong>Solicitud de ingreso</strong></div>
+          <p class="text-[0.85rem] text-[var(--gray)] leading-[1.7] mb-4">Para completar tu ingreso necesitas rellenar la solicitud oficial de la hermandad y presentarla en la Casa de Hermandad. Si tienes cualquier duda, consúltanos en el apartado de <a href="#contacto" data-nav="contacto" class="text-[var(--red-primary)] underline">Contacto</a>.</p>
+          <a href="#hazte-hermano" class="btn btn-primary" data-nav="hazte-hermano"><i class="fas fa-arrow-right mr-1.5"></i>Formulario de hermano</a>
+        </div>
+      </div>
+    </section>
+    <section id="figuras-secundarias" class="page-section bg-ivory" aria-label="Figuras Secundarias">
+      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
+        <h2 class="section-title fade-in" data-delay="0">Figuras Secundarias</h2>
+        <div class="gold-divider fade-in" data-delay="50"></div>
+        <p class="fade-in text-center text-[var(--gray)] max-w-2xl mx-auto mb-8" data-delay="100">Las figuras secundarias completan la narración evangélica del misterio del Santísimo Cristo Resucitado. Aquí puedes conocer su autor, el año de creación y la información de cada una.</p>
+        <div class="grid-3">
+          <div class="img-card fade-in" data-delay="100">
+            <img src="img/cristo-angel.jpg" alt="Ángel Anunciador de la Resurrección" loading="lazy" decoding="async">
+            <span class="badge">Figura secundaria</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-caption"><strong>Ángel Anunciador de la Resurrección</strong><br>Autor: Amadeo Ruiz Olmos · 1966</div>
+          </div>
+          <div class="img-card fade-in" data-delay="150">
+            <img src="img/cristo-procesion.jpg" alt="Soldados romanos del misterio" loading="lazy" decoding="async">
+            <span class="badge">Figura secundaria</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-caption"><strong>Soldados romanos</strong><br>Información pendiente de recopilar</div>
+          </div>
+          <div class="img-card fade-in" data-delay="200">
+            <img src="img/cristo-salida-ermita.jpg" alt="Vírgenes y acompañamiento del misterio" loading="lazy" decoding="async">
+            <span class="badge">Figura secundaria</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-caption"><strong>Acompañamiento del misterio</strong><br>Información pendiente de recopilar</div>
+          </div>
+        </div>
+        <p class="text-center text-[0.85rem] text-[var(--gray-light)] mt-6 fade-in" data-delay="250"><i class="fas fa-hourglass-half mr-1.5"></i>El catálogo completo de figuras está pendiente de recopilar.</p>
+      </div>
+    </section>
+    <section id="patrimonio" class="page-section bg-gray" aria-label="Patrimonio">
+      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
+        <h2 class="section-title fade-in" data-delay="0">Patrimonio</h2>
+        <div class="gold-divider fade-in" data-delay="50"></div>
+        <p class="fade-in text-center text-[var(--gray)] max-w-2xl mx-auto mb-8" data-delay="100">En este apartado se recogen las fotografías de los enseres de la Cofradía: insignias, túnicas, faroles, estandartes y demás elementos que conforman nuestro rico patrimonio.</p>
+        <div class="grid-3">
+          <div class="img-card fade-in" data-delay="100">
+            <img src="img/ermita-interior.jpg" alt="Interior de la Ermita de Nuestra Señora de Gracia" loading="lazy" decoding="async">
+            <span class="badge">Enser</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Ermita de Nuestra Señora de Gracia</div>
+          </div>
+          <div class="img-card fade-in" data-delay="150">
+            <img src="img/ermita-exterior.jpg" alt="Exterior de la Ermita de Gracia" loading="lazy" decoding="async">
+            <span class="badge">Enser</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Exterior de la Ermita de Gracia</div>
+          </div>
+          <div class="img-card fade-in" data-delay="200">
+            <img src="img/logo-50-aniversario.jpg" alt="Logo del 50 aniversario" loading="lazy" decoding="async">
+            <span class="badge">Conmemorativo</span>
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">50 Aniversario</div>
+          </div>
+        </div>
+        <p class="text-center text-[0.85rem] text-[var(--gray-light)] mt-6 fade-in" data-delay="250"><i class="fas fa-hourglass-half mr-1.5"></i>Se está recopilando el catálogo fotográfico completo de los enseres.</p>
+      </div>
+    </section>
+    <section id="junta-gobierno" class="page-section bg-ivory" aria-label="Junta de Gobierno">
+      <div class="container" style="max-width:1200px;margin:0 auto;width:100%">
+        <h2 class="section-title fade-in" data-delay="0">Junta de Gobierno</h2>
+        <div class="gold-divider fade-in" data-delay="50"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 items-center">
+          <div class="fade-in" data-delay="100">
+            <p class="mb-4 text-[0.95rem] leading-[1.8]">La Junta de Gobierno es el órgano que dirige y representa a la Cofradía, encargándose de la organización de los cultos, las salidas procesionales, la conservación del patrimonio y la vida administrativa de la hermandad.</p>
+            <div class="bg-white rounded-[var(--radius-md)] shadow-[var(--shadow-sm)] p-4 border-l-4 border-[var(--red-primary)] mb-3">
+              <div class="flex items-center gap-2.5 mb-2"><i class="fas fa-crown text-[var(--gold)]"></i><strong>Hermano Mayor</strong></div>
+              <p class="text-[0.85rem] text-[var(--gray)]">Dirige la Junta de Gobierno y representa a la Cofradía. Pendiente de confirmar el nombre.</p>
+            </div>
+            <div class="bg-white rounded-[var(--radius-md)] shadow-[var(--shadow-sm)] p-4 border-l-4 border-[var(--gold)]">
+              <div class="flex items-center gap-2.5 mb-2"><i class="fas fa-info-circle text-[var(--red-primary)]"></i><strong>Nota</strong></div>
+              <p class="text-[0.85rem] text-[var(--gray)] leading-[1.7]">Queda por decidir si se muestra la fotografía conjunta de la Junta o fichas individuales con nombre e información de cada miembro.</p>
+            </div>
+          </div>
+          <div class="img-card fade-in" data-delay="150">
+            <img src="img/junta-gobierno.jpg" alt="Junta de Gobierno de la Cofradía" loading="lazy" decoding="async">
+            <div class="img-card-overlay"><i class="fas fa-expand"></i></div>
+            <div class="img-card-name">Junta de Gobierno</div>
+          </div>
+        </div>
       </div>
     </section>
     <section id="tienda" class="page-section bg-gray" aria-label="Tienda Online">
@@ -2579,7 +2810,7 @@ button.calendar-day.other {
           <li><a href="#inicio" class="text-sm text-gray-500 hover:text-[var(--gold-light)] transition-colors">Inicio</a></li>
            <li><a href="#historia" class="text-sm text-gray-500 hover:text-[var(--gold-light)] transition-colors">Historia</a></li>
            <li><a href="#nuestro-titular" class="text-sm text-gray-500 hover:text-[var(--gold-light)] transition-colors">Nuestro Titular</a></li>
-           <li><a href="#galeria-archivo" class="text-sm text-gray-500 hover:text-[var(--gold-light)] transition-colors">Galería y Archivo</a></li>
+           <li><a href="#galeria" class="text-sm text-gray-500 hover:text-[var(--gold-light)] transition-colors">Galería y Archivo</a></li>
           <li><a href="#cultos-semana-santa" class="text-sm text-gray-500 hover:text-[var(--gold-light)] transition-colors">Cultos y Semana Santa</a></li>
           <li><a href="#blog-cofrade" class="text-sm text-gray-500 hover:text-[var(--gold-light)] transition-colors">Blog Cofrade</a></li>
           <li><a href="#noticias" class="text-sm text-gray-500 hover:text-[var(--gold-light)] transition-colors">Noticias</a></li>
@@ -2728,7 +2959,7 @@ button.calendar-day.other {
 'use strict';
 (function() {
   // --- Pages ---
-  const pages = ['inicio','saludo-hermano','historia','nuestro-titular','galeria-archivo','cultos-semana-santa','blog-cofrade','noticias','tienda','hazte-hermano','contacto','aviso-legal','politica-privacidad','politica-cookies'];
+  const pages = ['inicio','saludo-hermano','historia','nuestro-titular','figuras-secundarias','patrimonio','junta-gobierno','actualidad','grupo-joven','nuevos-hermanos','galeria','cultos-semana-santa','blog-cofrade','noticias','tienda','hazte-hermano','contacto','aviso-legal','politica-privacidad','politica-cookies'];
   let currentPage = 'inicio';
   let ssVisited = false;
 
@@ -2830,6 +3061,12 @@ button.calendar-day.other {
     if (e.target === menuOverlay) closeOverlay();
   });
   menuOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', closeOverlay));
+  menuOverlay.querySelectorAll('.overlay-parent').forEach(p => {
+    p.addEventListener('click', () => {
+      const li = p.closest('li');
+      li.classList.toggle('open');
+    });
+  });
 
   // Keyboard navigation
   document.addEventListener('keydown', e => {
